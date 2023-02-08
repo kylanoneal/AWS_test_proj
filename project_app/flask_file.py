@@ -59,34 +59,43 @@ windows:
 
 copy the local address into a browser (http://127.0.0.1:5000)
 '''
-
+#summarize takes in user text and creates a summary object in the database
 @app.route('/summarize', methods=['GET', 'POST'])
 def summarize():
-    #if session.get('user'): #check that a user is currently logged into the session
-    #    return render_template('index.html', user=session['user']) #return the html page for index.html and pass session['user'] as user to the html page
+    '''if session.get('user'):''' #will be used for user implementation
+    #creates an InputTextForm object from forms.py
     input_text_form = InputTextForm()
+    #check that the submit button has been clicked and the text entry is valid
     if request.method == 'POST' and input_text_form.validate_on_submit():
+        #retrieve the input text
         input_text = request.form['inputText']
-
-        id = db.Column("id", db.Integer, primary_key=True)
+        #run algorithm 1 on input_text
         title, best_summary = algo_1(input_text)
-
+        #create a new Summary object from models.py
         new_summary = Summary(title, input_text, best_summary) #, session['user_id'] add when users are implemented
+        #add the new_summary object to the database
         db.session.add(new_summary)
+        #commit changes to the database
         db.session.commit()
-        #summary_id = db.session.query(Summary).order_by(Summary.id.desc()).first()
-        #show_summary(new_summary)
+        #show the user the newly created summary
         return show_summary(new_summary)
+    #reload the summarize page if method is not POST
     return render_template('summarize.html')
 
+#show_summary shows a summary to the user
 @app.route('/show_summary')
 def show_summary(summary):
+    #check if a summary has been passed (currently the only implementation)
     if summary:
-        #summary = db.session.query(Summary).filter_by(id=summary_id).one()
+        #send summary to show_summary.html
         return render_template('show_summary.html', summary = summary)
+    
+    #will be used when functionality for user selecting from all previous summaries is added
     else:
+        #currently chooses the most recently created summary
         summary = db.session.query(Summary).order_by(Summary.id.desc()).first()
         return render_template('show_summary.html', summary = summary)
+    #return to summarize if this function fails
     return redirect(url_for('summarize'))
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True) #this runs the app locally
