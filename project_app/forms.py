@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, TextAreaField
 from wtforms.validators import Length, Regexp, DataRequired, EqualTo, Email
 from wtforms import ValidationError
-from models import User
+#from models import User
 from database import db
 
 
@@ -60,12 +60,12 @@ class LoginForm(FlaskForm):
             raise ValidationError('Incorrect username or password.')
 
 
-class CommentForm(FlaskForm):
+class InputTextForm(FlaskForm):
     class Meta:
         csrf = False
 
-    comment = TextAreaField('Comment')
+    input_text = TextAreaField('Enter text')
 
-    submit_comment = SubmitField('Add Comment/User')
+    submit_text = SubmitField('Submit')
 
-    username = TextAreaField('Username')
+    #username = TextAreaField('Username')

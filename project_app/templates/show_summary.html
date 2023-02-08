@@ -33,7 +33,14 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h1 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h1>
+                    <h2 class="heading-secondary hero-second">The sentence that best summarizes your text is: </h2>
+                    {% if summary %}
+                        <p>{{summary.best_summary}}</p>
+                        <p>Your input text: </p>
+                        <p>{{summary.text}}</p>
+                    {% else %}
+                        <p>No summary found</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

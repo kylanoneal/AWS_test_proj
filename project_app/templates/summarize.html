@@ -34,6 +34,15 @@
             <div class="hero">
                 <div class="hero-txt">
                     <h1 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h1>
+                    <h2 class="heading-secondary hero-second">Enter your text below and click submit to generate the summary sentence.</h2>
+                    <div class="new-summary-container">
+                        <form action="summarize" method="post" enctype="multipart/form-data">
+                            <div class="text-container">
+                                <textarea name="inputText"  rows="6" cols="0" style="font-size: 2rem">Input text here...</textarea>
+                                <p><input type="submit" value="Summarize"/></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
