@@ -102,6 +102,7 @@ def show_summary(summary):
 @app.route('/initialize')
 def init_models():
     #initialize and or train models if they don't exist in the database
+    #will be used for when the database is reset and the trained models don't exist anymore
     return
     
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True) #this runs the app locally
