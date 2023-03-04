@@ -42,6 +42,13 @@ def algo_1(input_text):
     title = " ".join(title)
     return title, best_pick
 
+#place holder for the next algorithm
+def algo_2(input_text):
+    '''determine which sentences are most relevant by using bags of words.
+    This will create a dictionary of every meaningful word in the text and rate each sentence by how similar it is to the overall text.
+    For example, a sentence containing "pancakes" is likely a better summary to a text about making pancakes than a sentence without the word "pancakes".'''
+    sentences, words = read_data(input_text)
+
 #used for testing
 '''def main():
     test_text = """
