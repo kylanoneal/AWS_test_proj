@@ -10,7 +10,7 @@ def read_data(input_text):
     return data_sentences_tokenized, data_words_tokenized
 
 #implementation of patent methodology, currently only returns a single sentence
-def algo_1(input_text):
+def algo_1(input_text, sentence_resolution):
     '''create a dataframe of the sentences in input_text
        Columns are sentences, rows are words'''
     sentences, words = read_data(input_text)
@@ -27,23 +27,35 @@ def algo_1(input_text):
                 weights_df[column,row] = 0
             else:
                 weights_df[column,row] = np.exp(-1 * column)
+    weights_df = weights_df.T #transpose weights to match indexing of sentences dataframe
     '''maximize the weights to pick the sentence with the highest euclidean distance'''
+    summary = [] #stores summary sentences
+    '''calc distances of each sentence in sentences df using weights'''
     distances = []
-    for sentence in weights_df.T:
+    for sentence in weights_df:
         euclidean_distance = np.sqrt(np.sum(sentence**2))
         distances.append(euclidean_distance)
-    max_distance = np.max(distances)
-    index_max_dist = distances.index(max_distance)
-    #select the sentence with the largest distance
-    best_pick = " ".join(np.asarray(sentence_df['sen_' + str(index_max_dist)]))
+    '''calculate the best sentence i number of times where i = sentence_resolution'''
+    for i in range(sentence_resolution):
+        max_distance = np.max(distances)
+        index_max_dist = distances.index(max_distance)
+        #select the sentence with the largest distance
+        best_pick = np.asarray(sentence_df['sen_' + str(index_max_dist)])
+        #remove any trailing None's for any sentence that isn't the longest
+        best_pick = best_pick[best_pick != np.array(None)]
+        best_pick = " ".join(best_pick)
+        print(best_pick)
+        summary.append(best_pick)
+        #remove the best sentence to continue finding i best summary sentences
+        distances[index_max_dist] = 0.0
     #use the first sentence in the text as a title
     title = np.asarray(sentence_df['sen_0'])
     title = title[title != np.array(None)]
     title = " ".join(title)
-    return title, best_pick
+    return title, summary
 
 #place holder for the next algorithm
-def algo_2(input_text):
+def algo_2(input_text, sentence_resolution):
     '''determine which sentences are most relevant by using bags of words.
     This will create a dictionary of every meaningful word in the text and rate each sentence by how similar it is to the overall text.
     For example, a sentence containing "pancakes" is likely a better summary to a text about making pancakes than a sentence without the word "pancakes".'''
@@ -83,12 +95,29 @@ def gen_bag_of_words(words: list):
     bow_dict.pop(',')
     return bow_dict
 
-'''#used for testing
+def generate_summary(input_text, algorithm_choice, sentence_resolution):
+    if algorithm_choice == 0:
+        title, total_summary = algo_1(input_text, sentence_resolution)
+        best_summary = convert_summary(total_summary)
+        return title, best_summary
+    elif algorithm_choice == 1:
+        title, best_summary = algo_2(input_text, sentence_resolution)
+        best_summary = convert_summary(best_summary)
+        return title, best_summary
+
+def convert_summary(best_summary):
+    summary_string = ''
+    for sentence in best_summary:
+        summary_string += ('splitmehere' + sentence)
+    return summary_string
+
+#used for testing
 def main():
-    #test_text = """
- #Muad'Dib learned rapidly because his first training was in how to learn. And the first lesson of all was the basic trust that he could learn. It's shocking to find how many people do not believe they can learn, and how many more believe learning to be difficult."""
-    test_text = "This This This, This This This. This This This, This, This This."
-    algo_2(test_text)
+    test_text = """Muad'Dib learned rapidly because his first training was in how to learn. And the first lesson of all was the basic trust that he could learn. It's shocking to find how many people do not believe they can learn, and how many more believe learning to be difficult."""
+    #test_text = "This This This, This This This. This This This, This, This This."
+    title, best_summary = generate_summary(test_text, 0, 3)
+    print(title, best_summary)
+
 
 if __name__ == "__main__":
-    main()'''
+    main()

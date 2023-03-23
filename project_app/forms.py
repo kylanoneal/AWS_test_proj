@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, TextAreaField, FileField, SelectField
 from wtforms.validators import Length, Regexp, DataRequired, EqualTo, Email
 from wtforms import ValidationError
 #from models import User
@@ -66,6 +66,24 @@ class InputTextForm(FlaskForm):
 
     input_text = TextAreaField('Enter text')
 
+    attach_text_file = FileField('Upload text file')
+
+    attach_image_file = FileField('Upload image file')
+
+    algorithm_choice = SelectField('Algorithm:', validate_choice=False, choices=[(0, 'distance'), (1, 'bag of words'), (2, 'nlp')])
+
+    sentence_resolution = SelectField('Resolution:', validate_choice=False, choices=[(1, '1 Sentence'), (2, '2 Sentences'), (3, '3 Sentences')])
+
     submit_text = SubmitField('Submit')
 
     #username = TextAreaField('Username')
+
+    '''{{form.input_text}} <br/>
+        {{form.attach_text_file}}<br/>
+        {{form.attach_image_file}}<br/>
+        <!--p><input type="submit" value="Summarize"/></p-->
+        {{ form.submit_text}}
+    </div>
+    <div>
+        {{form.algorithm_choice}}<br/>
+        {{form.sentence_resolution}}<br/>'''

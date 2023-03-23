@@ -36,10 +36,18 @@
                     <h1 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h1>
                     <h2 class="heading-secondary hero-second">Enter your text below and click submit to generate the summary sentence.</h2>
                     <div class="new-summary-container">
-                        <form action="summarize" method="post" enctype="multipart/form-data">
+                        <form action="{{ url_for('summarize') }}" method="post" enctype="multipart/form-data">
                             <div class="text-container">
-                                <textarea name="inputText"  rows="6" cols="0" style="font-size: 2rem">Input text here...</textarea>
-                                <p><input type="submit" value="Summarize"/></p>
+                                <!--textarea name="inputText"  rows="6" cols="0" style="font-size: 2rem">Input text here...</textarea-->
+                                {{form.input_text}} <br/>
+                                {{form.attach_text_file.label}}{{form.attach_text_file}}<br/>
+                                {{form.attach_image_file.label}}{{form.attach_image_file}}<br/>
+                                <!--p><input type="submit" value="Summarize"/></p-->
+                                {{ form.submit_text}}
+                            </div>
+                            <div>
+                                {{form.algorithm_choice}}<br/>
+                                {{form.sentence_resolution}}<br/>
                             </div>
                         </form>
                     </div>

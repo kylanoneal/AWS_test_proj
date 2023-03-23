@@ -12,7 +12,7 @@ from models import Summary as Summary
 '''forms holds the form objects used to take in user data'''
 from forms import RegisterForm, LoginForm, InputTextForm
 from werkzeug.utils import secure_filename #url_for() is how we supply the url for most functions
-from ML_models import algo_1
+from ML_models import generate_summary
 import bcrypt #password hashing for security
 import sys
 app = Flask(__name__)     # create an app
@@ -68,9 +68,11 @@ def summarize():
     #check that the submit button has been clicked and the text entry is valid
     if request.method == 'POST' and input_text_form.validate_on_submit():
         #retrieve the input text
-        input_text = request.form['inputText']
+        input_text = request.form['input_text']
+        algorithm_choice = int(request.form['algorithm_choice'])
+        sentence_resolution = int(request.form['sentence_resolution'])
         #run algorithm 1 on input_text
-        title, best_summary = algo_1(input_text)
+        title, best_summary = generate_summary(input_text, algorithm_choice, sentence_resolution)
         #create a new Summary object from models.py
         new_summary = Summary(title, input_text, best_summary) #, session['user_id'] add when users are implemented
         #add the new_summary object to the database
@@ -80,7 +82,7 @@ def summarize():
         #show the user the newly created summary
         return show_summary(new_summary)
     #reload the summarize page if method is not POST
-    return render_template('summarize.html')
+    return render_template('summarize.html', form=input_text_form)
 
 #show_summary shows a summary to the user
 @app.route('/show_summary')

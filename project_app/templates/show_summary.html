@@ -35,7 +35,9 @@
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second">The sentence that best summarizes your text is: </h2>
                     {% if summary %}
-                        <p>{{summary.best_summary}}</p>
+                        {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
+                        <p>{{sentence}}</p>
+                        {% endfor %}
                         <p>Your input text: </p>
                         <p>{{summary.text}}</p>
                     {% else %}

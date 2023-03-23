@@ -6,7 +6,7 @@ class Summary(db.Model):
     id = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
     title = db.Column("title", db.String(200))
     text = db.Column("text", db.String(500)) #currently limiting input text to 500 characters
-    best_summary = db.Column("best_summary", db.String(500))
+    best_summary = db.Column("best_summary", db.String(5000))
     #user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False) placeholder for when users are implemented
 
     def __init__(self, title, text, best_summary): #add user_id as a parameter when users are implemented
