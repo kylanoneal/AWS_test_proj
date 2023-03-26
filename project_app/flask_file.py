@@ -13,6 +13,7 @@ from models import Summary as Summary
 from forms import RegisterForm, LoginForm, InputTextForm
 from werkzeug.utils import secure_filename #url_for() is how we supply the url for most functions
 from ML_models import generate_summary
+from text_from_file import *
 import bcrypt #password hashing for security
 import sys
 app = Flask(__name__)     # create an app
@@ -68,7 +69,19 @@ def summarize():
     #check that the submit button has been clicked and the text entry is valid
     if request.method == 'POST' and input_text_form.validate_on_submit():
         #retrieve the input text
-        input_text = request.form['input_text']
+
+        #storing uploaded files in /instance directory
+        if input_text_form.attach_text_file.data:
+            file = input_text_form.attach_text_file.data
+            file.save('instance/' + file.filename)
+            input_text = get_text_from_txt('instance/' + file.filename)
+        elif input_text_form.attach_image_file.data:
+            file = input_text_form.attach_image_file.data
+            file.save('instance/' + file.filename)
+            input_text = get_text_from_image('instance/' + file.filename)
+        else:
+            input_text = input_text_form.input_text.data
+
         algorithm_choice = int(request.form['algorithm_choice'])
         sentence_resolution = int(request.form['sentence_resolution'])
         #run algorithm 1 on input_text
