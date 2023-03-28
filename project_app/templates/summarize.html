@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="UNCC Projects App">
-        <title>UNCC Projects App</title>
+        <meta name="description" content="Summarizer">
+        <title>Summarizer</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -12,38 +12,50 @@
             rel="stylesheet"
         />
         <!-- styles -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='sum.css') }}">
     </head>
     <header>
         <nav class="home-nav-bar">
-            <div class= "home-btn">
-                <a href="{{ url_for('index') }}" class="home-icon">Home</a>
-                <a href="{{ url_for('summarize') }}" class="home-icon">Summarize</a>
-            </div>
+
         <!--{% if user %}                                                       {} indicates a python block
                 <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
         {% else %}
                 <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
                 <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}-->
-            </div>
-        </nav>
+        {% endif %}
+            </div>-->
+
+        <div class="image">
+            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="50" height="50">
+        </div>
+            <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
+        <div class= "dropdown">
+            <button class="drop-btn">
+                <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
+            </button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('summarize') }}">Summarize</a>
+              </div>
+        </div>
+
+        <!--<h1>Text Summarization by Sentence Extraction</h1>-->
+    </nav>
     </header>
     <body>
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h1 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h1>
                     <h2 class="heading-secondary hero-second">Enter your text below and click submit to generate the summary sentence.</h2>
                     <div class="new-summary-container">
                         <form action="{{ url_for('summarize') }}" method="post" enctype="multipart/form-data">
                             <div class="text-container">
                                 <!--textarea name="inputText"  rows="6" cols="0" style="font-size: 2rem">Input text here...</textarea-->
-                                {{form.input_text}} <br/>
-                                {{form.attach_text_file.label}}{{form.attach_text_file}}<br/>
-                                {{form.attach_image_file.label}}{{form.attach_image_file}}<br/>
+                                {{form.input_text(class="form-control")}} <br/>
+                                {{form.attach_text_file.label(class="text1-control")}}{{form.attach_text_file(class="text2-control")}}<br/>
+                                {{form.attach_image_file.label(class="text1-control")}}{{form.attach_image_file(class="text2-control")}}<br/>
                                 <!--p><input type="submit" value="Summarize"/></p-->
-                                {{ form.submit_text}}
+                                {{ form.submit_text(class="file-control")}}
                             </div>
                             <div>
                                 {{form.algorithm_choice}}<br/>
@@ -56,4 +68,9 @@
         </div>
         <div class="shape"></div>
     </body>
+    <footer>
+        <div class = "footer">
+            <h3>UNCC 4155</h3>
+        </div>
+    </footer>
 </html>

@@ -12,22 +12,35 @@
             rel="stylesheet"
         />
         <!-- styles -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='sum.css') }}">
     </head>
     <header>
         <nav class="home-nav-bar">
-            <div class= "home-btn">
-                <a href="{{ url_for('index') }}" class="home-icon">Home</a>
-                <a href="{{ url_for('summarize') }}" class="home-icon">Summarize</a>
-            </div>
+
         <!--{% if user %}                                                       {} indicates a python block
                 <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
         {% else %}
                 <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
                 <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}-->
-            </div>
-        </nav>
+        {% endif %}
+            </div>-->
+
+        <div class="image">
+            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="50" height="50">
+        </div>
+            <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
+        <div class= "dropdown">
+            <button class="drop-btn">
+                <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
+            </button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('summarize') }}">Summarize</a>
+              </div>
+        </div>
+
+        <!--<h1>Text Summarization by Sentence Extraction</h1>-->
+    </nav>
     </header>
     <body>
         <div class="container">
@@ -35,17 +48,29 @@
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second">The sentence that best summarizes your text is: </h2>
                     {% if summary %}
-                        {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
-                        <p>{{sentence}}</p>
+                        <div class="text-summary">
+                            {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
+                            <p>{{sentence}}</p>
+                        </div>
                         {% endfor %}
-                        <p>Your input text: </p>
-                        <p>{{summary.text}}</p>
+
+                        <p class="spacer">Your input text: </p>
+                        <div class="text-summary">
+                            <p>{{summary.text}}</p>
+                        <div>
                     {% else %}
-                        <p>No summary found</p>
+                        <div class="text-summary">
+                            <p>No summary found</p>
+                        <div>
                     {% endif %}
                 </div>
             </div>
         </div>
         <div class="shape"></div>
     </body>
+    <footer>
+        <div class = "footer">
+            <h3>UNCC 4155</h3>
+        </div>
+    </footer>
 </html>
