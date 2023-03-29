@@ -25,9 +25,9 @@
         {% endif %}
             </div>-->
 
-        <div class="image">
-            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="80" height="80">
-        </div>
+        <a href="{{ url_for('index') }}">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}">
+                </a>
             <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
         <div class= "dropdown">
             <button class="drop-btn">

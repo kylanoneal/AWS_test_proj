@@ -25,9 +25,9 @@
         {% endif %}
             </div>-->
 
-        <div class="image">
-            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="50" height="50">
-        </div>
+        <a href="{{ url_for('index') }}">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}">
+                </a>
             <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
         <div class= "dropdown">
             <button class="drop-btn">
@@ -36,6 +36,7 @@
             <div class="dropdown-content">
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
+                <a href="{{ url_for('help') }}">Help</a>
               </div>
         </div>
 
@@ -46,17 +47,18 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">The sentence that best summarizes your text is: </h2>
+                    <h2 class="heading-secondary hero-second">The sentence(s) that best summarizes your text is: </h2>
                     {% if summary %}
-                        <div class="text-summary">
-                            {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
-                            <p>{{sentence}}</p>
-                        </div>
-                        {% endfor %}
 
+                            {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
+                        <div class="text-summary">
+                            <p class="summary-control">{{sentence}}</p>
+                        </div>
+
+                    {% endfor %}
                         <p class="spacer">Your input text: </p>
                         <div class="text-summary">
-                            <p>{{summary.text}}</p>
+                            <p class="summary-control">{{summary.text}}</p>
                         <div>
                     {% else %}
                         <div class="text-summary">

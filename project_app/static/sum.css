@@ -70,7 +70,9 @@ footer{
 .text2-control{
     font-weight: 500;
 }
-
+.summary-control{
+    text-align: center;
+}
 /* Dropdown Button */
 .drop-btn {
   background-color: #648ABE;
