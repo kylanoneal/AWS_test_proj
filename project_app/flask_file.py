@@ -119,5 +119,12 @@ def init_models():
     #initialize and or train models if they don't exist in the database
     #will be used for when the database is reset and the trained models don't exist anymore
     return
+
+@app.route('/help')
+#define a function same as normal
+def help():
+    if session.get('user'): #check that a user is currently logged into the session
+        return render_template('help.html', user=session['user']) #return the html page for help.html and pass session['user'] as user to the html page
+    return render_template("help.html") #return the html page for help.html
     
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True) #this runs the app locally

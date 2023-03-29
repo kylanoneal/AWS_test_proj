@@ -17,6 +17,7 @@ html {
     overflow-x: hidden;
     overflow-y: hidden;
     height: 100%;
+    overflow:auto;
   
     /* Does not work on Safari */
     /* scroll-behavior: smooth; */
@@ -27,6 +28,7 @@ body {
     line-height: 1;
     font-weight: 400;
     background-color: #FCE0B9;
+    position: relative;
 }
 
 a {
@@ -36,19 +38,17 @@ a {
 }
 
 footer{
-    display: block;
-    position:absolute;
-    bottom:0;
-    background-color:#648ABE;
-    width:100%;
-    height:2.5rem;
-    justify-content: center;
+    background:#648ABE;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .footer-text{
-    font-size:150%;
-    font weight:100;
-    text-align: center;
+    display: inline-block;
+    padding: 10px;
 }
 
 .center{
@@ -95,14 +95,14 @@ span{
 
 .heading-primary{
     color:black;
-    font-size: 5rem;
-    font-weight: 300;
+    font-size: 3rem;
+    font-weight: 500;
 }
 
 .heading-secondary{
     color: #222;
     font-size: 3.4rem;
-    font-weight: 200;
+    font-weight: 800;
 }
 
 .home-icon{
@@ -144,8 +144,8 @@ padding:40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:2rem 2rem;
-    font-size: 1rem;
+    padding:1rem 4rem;
+    font-size: 2rem;
     background-color: #648ABE;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -159,6 +159,7 @@ padding:40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    position:relative;
     font-size: 16px;
 }
 
@@ -173,7 +174,6 @@ padding:40px;
 }
 
 .hero-first{
-    padding-top: 8rem;
     text-align: center;
 }
 
@@ -245,7 +245,6 @@ padding:40px;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  font-size:1rem;
 }
 
 .dropdown-content a:hover{

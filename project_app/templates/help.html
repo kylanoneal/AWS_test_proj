@@ -12,7 +12,7 @@
             rel="stylesheet"
         />
         <!-- styles -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='help.css') }}">
     </head>
     <header>
         <nav class="home-nav-bar">
@@ -44,23 +44,30 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">Objective</h2><br>
-                    <h3 class="home-screen-info">There is so much information available at our fingertips.
-                        In this digital age, it is often difficult and time-consuming to determine if a body of text is what we are looking for.
-                        With this application there is an efficient way to generate a concise summary of any text, text file or image!
-                        <br><br>Sometimes all we need is a brief overview. Summaries are easier to understand
-                        than long-winded texts filled with scientific jargon. Generating a summary with all the main points is much faster than
-                        trying to skim through an entire document and comprehend the important parts.
-                        The aim of this application help users decide if they would like to pass on a document
-                        or read deeper into it without having to spend the time to skim or read the entire text.</h3><br><br><br>
-                     <a href="{{ url_for('summarize') }}" class="home-icon">
+                    <h2 class="heading-secondary hero-second">Help</h2><br>
+                    <div style="border:2px solid black">
+                    <p class="help-screen-info" style="font-weight:500">How to use the application</p><br><br>
+                    <p class="help-screen-info">Hover on the Menu Icon in the top right and click "Summarize" or click the "Go to Summarize Text" button below.</p>
+                    <p class="help-screen-info">Copy + Paste text into the text box or chose a file from your computer. </p>
+                        <p class="help-screen-info">Select the length of the summary from the sentences drop down menu. </p>
+                        <p class="help-screen-info">Click summarize: This will lead to a summary page containing the summary and the original text. </p>
+                     <div style="padding:10px">
+                        <a href="{{ url_for('summarize') }}" class="home-icon">
                          <button class="home-page-summary-button">Go to Text Summarization</button>
-                     </a><br><br><br><br><br><br><br><br><br><br><br>
-
-                </div>
+                     </a>
+                         </div>
+                    </div>
+                    <h2 class="heading-secondary hero-second">Algorithms</h2><br>
+                    <div style="border:2px solid black">
+                        <p class="help-screen-info"><strong>Distance:</strong> Selects the longest sentence in the text. If multiple sentences are requested it will display in descending order of length.
+                    </p>
+                        <p class="help-screen-info"><strong>Bag of words:</strong> Uses histograms to find the sentences that best resemble the overall text</p>
+                        <p class="help-screen-info">NLP:</p>
+                    </div>
             </div>
         </div>
         <div class="shape"></div>
+            <div style="padding:20px"></div>
     <footer>
             <h3 class="footer-text">UNCC 4155</h3>
         </footer>

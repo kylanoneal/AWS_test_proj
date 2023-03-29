@@ -26,7 +26,7 @@
             </div>-->
 
         <div class="image">
-            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="50" height="50">
+            <img src="{{url_for('static', filename='TSBSELogo2.png')}}" width="80" height="80">
         </div>
             <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
         <div class= "dropdown">
@@ -36,6 +36,7 @@
             <div class="dropdown-content">
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
+               <a href="{{ url_for('help') }}">Help</a>
               </div>
         </div>
 
@@ -68,6 +69,7 @@
         </div>
         <div class="shape"></div>
     </body>
+    <div style="padding:20px"></div>
     <footer>
         <div class = "footer">
             <h3>UNCC 4155</h3>
