@@ -10,6 +10,9 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 #nltk.download('maxent_ne_chunker')
 #nltk.download('words')
 
+from summary_generation import get_summ_from_pretrained
+
+
 #reads input text and returns lists of contained sentences and words
 def read_data(input_text):
     data_sentences_tokenized = sent_tokenize(input_text) #split text into sentences
@@ -118,6 +121,7 @@ def gen_bag_of_words(words: list):
 
     return bow_dict
 
+
 #controller for which algorithm to use
 def generate_summary(input_text, algorithm_choice, sentence_resolution):
     if algorithm_choice == 0:
@@ -127,6 +131,14 @@ def generate_summary(input_text, algorithm_choice, sentence_resolution):
     elif algorithm_choice == 1:
         title, best_summary = algo_2(input_text, sentence_resolution)
         best_summary = convert_summary(best_summary)
+        return title, best_summary
+    elif algorithm_choice == 2:
+        #set title to be first sentence
+        title = sent_tokenize(input_text)[0]
+        #generate summary using pre-trained model
+        best_summary = get_summ_from_pretrained("t5-large", input_text)
+        #split into sentences and convert summary
+        best_summary = convert_summary(sent_tokenize(best_summary))
         return title, best_summary
 
 #converts the summary list into a single string
