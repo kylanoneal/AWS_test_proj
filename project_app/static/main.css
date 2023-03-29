@@ -147,7 +147,7 @@ padding:40px;
     padding:1rem 4rem;
     font-size: 2rem;
     background-color: #648ABE;
-    cursor: pointer;
+    /*cursor: pointer;*/
     -webkit-transition-duration: 0.4s; /* Safari */
 }
 
