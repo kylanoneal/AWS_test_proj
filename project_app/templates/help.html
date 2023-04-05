@@ -13,13 +13,14 @@
         />
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='help.css') }}">
+        <link rel="icon" href="{{url_for('static', filename='TSBSELogo2.png')}}">
     </head>
     <header>
         <nav class="home-nav-bar">
             <a href="{{ url_for('index') }}">
-                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Book Uploaded to Computer Logo">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
                 </a>
-            <h2 class="heading-primary hero-first">Text Summarization by Sentence Extraction</h2>
+            <h2 class="heading-primary hero-first">Concisely - Text Summarization by Sentence Extraction</h2>
             <div class= "dropdown">
             <button class="drop-btn">
                 <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
