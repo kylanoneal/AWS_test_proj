@@ -126,5 +126,22 @@ def help():
     if session.get('user'): #check that a user is currently logged into the session
         return render_template('help.html', user=session['user']) #return the html page for help.html and pass session['user'] as user to the html page
     return render_template("help.html") #return the html page for help.html
-    
-app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True) #this runs the app locally
+
+
+@app.route('/login')
+# define a function same as normal
+def login():
+    if session.get('user'):  # check that a user is currently logged into the session
+        return render_template('login.html', user=session[
+            'user'])  # return the html page for login.html and pass session['user'] as user to the html page
+    return render_template("login.html")  # return the html page for login.html
+
+@app.route('/pastSummaries')
+# define a function same as normal
+def pastSummaries():
+    if session.get('user'):  # check that a user is currently logged into the session
+        return render_template('past_summaries.html', user=session[
+            'user'])  # return the html page for pastSummaries.html and pass session['user'] as user to the html page
+    return render_template("past_summaries.html")  # return the html page for login.html
+
+app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)  # this runs the app locally

@@ -12,7 +12,7 @@
             rel="stylesheet"
         />
         <!-- styles -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='sum.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='pastSums.css') }}">
         <link rel="icon" href="{{url_for('static', filename='TSBSELogo2.png')}}">
     </head>
     <header>
@@ -55,32 +55,21 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">The sentence(s) that best summarizes your text is: </h2>
-                    {% if summary %}
+                    <h2 class="heading-secondary hero-second" style="padding:2%;">Your past summaries include:</h2>
+
+                    {% for i in range(0,len) %}
                     <div class="text-summary">
-                            {% for sentence in summary.best_summary.split('splitmehere')[1:]%}
-                            <p class="summary-control">{{sentence}}</p>
+                            <h3>Original Text:</h3>
+                            <p class="summary-control">{{SummariesText[i]}}</p>
+                            <h3>Summary:</h3>
+                            <p class="summary-control">{{Summaries[i]}}</p>
+                         </div>
                             {% endfor %}
-                    </div>
-                        <p class="spacer">Your input text: </p>
-                        <div class="text-summary">
-                            <p class="summary-control">{{summary.text}}</p>
-                        <div>
-                    {% else %}
-                        <div class="text-summary">
-                            <p>No summary found</p>
-                        <div>
-                    {% endif %}
+
                 </div>
             </div>
-                            <div style="padding:50px;">
-                             <a href="{{ url_for('summarize') }}" class="home-icon">
-                         <button class="home-page-summary-button">Go back to Text Summarization</button>
-                     </a>
-                                </div>
         </div>
-        <div class="shape"></div>
-
+        <div class="shape" style="padding:30px"></div>
     </body>
     <footer>
         <div class = "footer">

@@ -1,124 +1,14 @@
+/*
+Colors:
+
+*/
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
-body {
-    font-family: "Inter", sans-serif;
-    line-height: 1;
-    font-weight: 400;
-    background: #FCE0B9;
-
-}
-h2{
-font-weight: 500;
-}
-
-h1{
-    text-align: center;
-    display: inline-block;
-}
-h3{
-    display: inline-block;
-    padding: 10px;
-}
-p{
-    color: #222;
-    font-size: 2rem;
-    font-weight: 200;
-}
-.spacer{
-    padding-top: 4rem;
-    color: #222;
-    font-size: 3.4rem;
-    font-weight: 400;
-}
-footer{
-    background:#648ABE;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-.image{
-  display: inline-block;
-  padding: 0px;
-  bottom: 0;
-}
-.text-summary{
-    background: white;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    border-radius: 10px;
-    border: 2.5px solid black;
-}
-.form-control{
-    border: 2px solid black;
-    height: 200px;
-    width: 500px;
-    border-radius: 10px;
-}
-.file-control{
-    background-color: #648ABE;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    font-weight: 600;
-}
-.text1-control{
-    font-weight: 600;
-}
-.text2-control{
-    font-weight: 500;
-}
-.summary-control{
-    text-align: center;
-}
-/* Dropdown Button */
-.drop-btn {
-  background-color: #648ABE;
-  color: #648ABE;
-  padding: 8px;
-  font-size: 8px;
-  border-radius: 12px;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  right: 0;
-  z-index: 1;
-  border-radius: 10px;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover/ added border radius */
-.dropdown-content a:hover {background-color: #ddd; border-radius: 10px;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block; }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .drop-btn {background-color: #F9CD8D;}
 
 html {
     /* font-size: 10px; */
@@ -128,32 +18,74 @@ html {
     overflow-y: hidden;
     height: 100%;
     overflow:auto;
-
+  
     /* Does not work on Safari */
     /* scroll-behavior: smooth; */
 }
+
+body {
+    font-family: "Inter", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    background-color: #FCE0B9;
+    position: relative;
+}
+
 a {
     text-decoration: none;
     border: none;
     color:black;
 }
+form{
+display: table;
+margin-right: auto;
+ margin-left: auto;
+ padding: 5%;
+}
+
+label {
+display: table-cell;
+font-size:20px;
+}
+
+input {
+ display: table-cell;
+ }
+
+footer{
+    background:#648ABE;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-text{
+    display: inline-block;
+    padding: 10px;
+}
+
 .center{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .center-column{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .container {
     /* or 1140px */
     max-width: 120rem;
     padding: 0 3.2rem;
     margin: 0 auto;
 }
+
 .register-container{
     margin-top: 2%;
     display: flex;
@@ -161,6 +93,7 @@ a {
     align-items: center;
     flex-direction: column;
 }
+
 .text-container{
     display: flex;
     justify-content: center;
@@ -168,32 +101,44 @@ a {
     flex-direction: column;
     padding: 3rem 4rem;
 }
-.home-page-summary-button{
-    background-color: #648ABE;
-    border-radius: 12px;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    position:relative;
-    font-size: 16px;
+
 span{
     color:#86377b;
     filter: brightness(140%);
     font-weight: 500;
 }
+
 .heading-primary{
     color:black;
     font-size: 3rem;
     font-weight: 500;
 }
+
 .heading-secondary{
     color: #222;
     font-size: 3.4rem;
-    font-weight: 400;
+    font-weight: 800;
 }
+
+.login-icon{
+    font-size: 3rem;
+    color:#648ABE;
+    transition: 0.3s;
+    font-weight: 500;
+    filter: brightness(100%);
 }
+
+.login-icon:hover{
+    transform: scale(1.15);
+}
+
+.login-screen-info{
+font-size:3rem;
+font-weight:200;
+padding-top:20px;
+padding-bottom:20px;
+}
+
 .nav-btn{
     display: inline-block;
     margin-left: 1rem;
@@ -205,10 +150,12 @@ span{
     transition: 0.3s;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.08),0 2px 5px 0 rgba(0,0,0,0.08);
 }
+
 .nav-btn:hover, .nav-btn:active{
     background-color: #888888;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
 }
+
 .home-nav-bar{
     display: flex;
     align-items: center;
@@ -216,45 +163,126 @@ span{
     padding:1rem 4rem;
     font-size: 2rem;
     background-color: #648ABE;
-    /*cursor: pointer;
+    /*cursor: pointer;*/
     -webkit-transition-duration: 0.4s; /* Safari */
 }
+
+.login-button{
+    background-color: #648ABE;
+    border-radius: 12px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    font-size: 16px;
+}
+
 .hero{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .hero-txt{
     text-align: center;
 }
+
 .hero-first{
     text-align: center;
 }
+
 .hero-second{
     padding-top: 4rem;
 }
+
 .hero-cta{
     margin-top: 1.6rem;
     font-size: 2rem;
     background-color: #222222;
     color: #ffffff;
 }
+
+.header-title{
+    font-size:4rem;
+    font-weight:800;
+}
+
 .nav-cta{
     background-color: #222222;
     color: #ffffff;
 }
+
 .hero-cta:hover, .hero-cta:active{
     background-color: #86377b;
     filter: brightness(140%);
     color: #ffffff;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
 }
+
 .nav-cta:hover, .nav-cta:active{
     background-color: #86377b;
     filter: brightness(150%);
     color: #ffffff;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
 }
+
 .pad-bottom{
     padding-bottom: 2rem;
+}
+
+.drop-btn {
+  background-color: #648ABE;
+  color: #648ABE;
+  padding: 8px;
+  font-size: 8px;
+  border-radius: 12px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right: 0;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover{
+background-color: #ddd;
+border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content{
+display: block;
+}
+
+.dropdown:hover .drop-btn{
+background-color: #F9CD8D;
+}
+.login-input-field{
+text-align: center;
+padding: 1%;
+}
+.login-input-field-label{
+font-size:15px;
+}
+.login-input-div{
+padding: 10%;
+display:table-row;
 }

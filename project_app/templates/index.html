@@ -25,10 +25,17 @@
             <button class="drop-btn">
                 <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
             </button>
-            <div class="dropdown-content">
+             <div class="dropdown-content">
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
                 <a href="{{ url_for('help') }}">Help</a>
+                {% if user %}
+                <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
+                <a>Log Out</a>
+                {% else %}
+                <a href="{{ url_for('login') }}">Log in</a>
+                <a>Sign up</a>
+                {% endif %}
               </div>
         </div>
 
