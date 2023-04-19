@@ -16,7 +16,7 @@ class Summary(db.Model):
         #self.user_id = user_id
 
 
-'''class User(db.Model):
+class User(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     first_name = db.Column("first_name", db.String(100))
     last_name = db.Column("last_name", db.String(100))
@@ -32,4 +32,4 @@ class Summary(db.Model):
         self.email = email
         self.password = password
         self.registered_on = datetime.date.today()
-        self.sorting_order = False'''
+        self.sorting_order = False

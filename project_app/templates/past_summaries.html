@@ -39,11 +39,11 @@
                 <a href="{{ url_for('summarize') }}">Summarize</a>
                 <a href="{{ url_for('help') }}">Help</a>
                 {% if user %}
-                <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
-                <a>Log Out</a>
+                    <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
                 {% else %}
-                <a href="{{ url_for('login') }}">Log in</a>
-                <a>Sign up</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                    <a href="{{ url_for('login') }}">Log in</a>
                 {% endif %}
               </div>
         </div>

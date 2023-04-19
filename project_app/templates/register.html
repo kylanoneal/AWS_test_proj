@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="UNCC Projects App">
-        <title>Login</title>
+        <meta name="description" content="Register">
+        <title>Register</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -17,11 +17,11 @@
     </head>
     <header>
         <nav class="home-nav-bar">
-            <a href="{{ url_for('index') }}">
+        <a href="{{ url_for('index') }}">
                     <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
                 </a>
             <h2 class="heading-primary hero-first">Concisely - Text Summarization by Sentence Extraction</h2>
-            <div class= "dropdown">
+        <div class= "dropdown">
             <button class="drop-btn">
                 <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
             </button>
@@ -39,23 +39,37 @@
               </div>
         </div>
 
-        <!--{% if user %}                                                       {} indicates a python block
-                <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
-        {% else %}
-                <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
-                <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}-->
-            </div>
-        </nav>
+        <!--<h1>Text Summarization by Sentence Extraction</h1>-->
+    </nav>
     </header>
     <body>
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">Log in</h2><br>
-                    <h3 class="login-screen-info">Log in to store the summaries that you create</h3>
-                    <form>
-                    <div class="login-input-div">
+                    <h2 class="heading-secondary hero-second">Enter your information below to create an account.</h2>
+                    <div class="new-summary-container">
+                        <form action="{{ url_for('register') }}" method="POST">
+                            <div class="form-container">
+                                <div class="form-field">{{form.firstname.label(class="login-input-field-label")}}
+                                    {{form.firstname(class="login-input-field")}}
+                                    {% if form.firstname.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.firstname.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                                <div class="form-field">{{form.lastname.label(class="login-input-field-label")}}
+                                    {{form.lastname(class="login-input-field")}}
+                                    {% if form.lastname.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.lastname.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
                                 <div class="form-field">{{form.email.label(class="login-input-field-label")}}
                                     {{form.email(class="login-input-field")}}
                                     {% if form.email.errors %}
@@ -76,20 +90,29 @@
                                     </ul>
                                     {% endif %}
                                 </div>
-                                {{form.submit(class="login-button")}}
-                        </div>
-                    </form>
-                    <br><br><br><br>
-                    <div class="account-creation-text">
-                     <p>Dont have an account? Click</p><a style="color:blue; text-decoration:underline;" href="{{ url_for('help') }}">here
-                        <a href="{{ url_for('register') }}">Register</a></a><p>to create one</p>
+                                <div class="form-field">{{form.confirmPassword.label(class="login-input-field-label")}}
+                                    {{form.confirmPassword(class="login-input-field")}}
+                                    {% if form.confirmPassword.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.confirmPassword.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                                {{form.submit}}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="shape"></div>
-    <footer>
-            <h3 class="footer-text">UNCC 4155</h3>
-        </footer>
     </body>
+    <div style="padding:20px"></div>
+    <footer>
+        <div class = "footer">
+            <h3>UNCC 4155</h3>
+        </div>
+    </footer>
 </html>
