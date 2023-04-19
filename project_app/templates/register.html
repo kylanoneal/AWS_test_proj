@@ -29,6 +29,7 @@
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
                 <a href="{{ url_for('help') }}">Help</a>
+                <a href="{{ url_for('tutorial') }}">Tutorial</a>
                 {% if user %}
                     <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
@@ -112,7 +113,10 @@
     <div style="padding:20px"></div>
     <footer>
         <div class = "footer">
-            <h3>UNCC 4155</h3>
+            <h3>UNCC 4155</h3><br>
+            {% if user %}
+                {{user}}
+            {% endif %}
         </div>
     </footer>
 </html>

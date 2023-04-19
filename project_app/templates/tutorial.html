@@ -20,32 +20,24 @@
             <a href="{{ url_for('index') }}">
                     <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
                 </a>
-            <h2 class="heading-primary hero-first">Concisely - Text Summarization by Sentence Extraction</h2>
+            <h2 class="heading-primary hero-first"> Concisely - Text Summarization by Sentence Extraction</h2>
             <div class= "dropdown">
             <button class="drop-btn">
                 <img class="hamburger-menu-icon" src="{{url_for('static', filename='icons8-menu-30.png')}}">
             </button>
-             <div class="dropdown-content">
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('summarize') }}">Summarize</a>
-                <a href="{{ url_for('help') }}">Help</a>
-                <a href="{{ url_for('tutorial') }}">Tutorial</a>
-                {% if user %}
-                    <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
-                    <a href="{{ url_for('logout') }}">Logout</a>
-                {% else %}
-                    <a href="{{ url_for('register') }}">Register</a>
-                    <a href="{{ url_for('login') }}">Log in</a>
-                {% endif %}
-              </div>
-        </div>
-
-        <!--{% if user %}                                                       {} indicates a python block
-                <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
-        {% else %}
-                <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
-                <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}-->
+                <div class="dropdown-content">
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('summarize') }}">Summarize</a>
+                    <a href="{{ url_for('help') }}">Help</a>
+                    <a href="{{ url_for('tutorial') }}">Tutorial</a>
+                    {% if user %}
+                        <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('register') }}">Register</a>
+                        <a href="{{ url_for('login') }}">Log in</a>
+                    {% endif %}
+                </div>
             </div>
         </nav>
     </header>
@@ -53,7 +45,7 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">Objective</h2><br>
+                    <h2 class="heading-secondary hero-second">Welcome to Concisely!</h2><br>
                     <h3 class="home-screen-info">There is so much information available at our fingertips.
                         In this digital age, it is often difficult and time-consuming to determine if a body of text is what we are looking for.
                         With this application there is an efficient way to generate a concise summary of any text, text file or image!

@@ -16,6 +16,7 @@ from ML_models import generate_summary
 from text_from_file import *
 import bcrypt #password hashing for security
 import sys
+import math
 app = Flask(__name__)     # create an app
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_project_app.db'
@@ -35,37 +36,10 @@ def index():
         return render_template('index.html', user=session['user']) #return the html page for index.html and pass session['user'] as user to the html page
     return render_template("index.html") #return the html page for index.html
  
-'''
-!!!you can pip install -r requirements.txt to get all of the packages, but I am not sure which ones are unnecessary from other classes
 
-To install flask:
-    Mac:
-        cd into the project_app folder
-        python -m venv venv             #maybe python3; this creates a virtual environment
-        source venv/bin/activate        #activates the ve
-        pip install Flask               #maybe pip3; this installs flask
-
-    Windows:
-        cd into the project_app folder
-        python -m venv venv
-        source venv/Scripts/activate
-        pip install Flask
-
-To run the flask app
-
-I belive mac does:
-    export FLASK_APP=flask_file.py
-    flask run
-
-windows:
-    python flask_file.py
-
-copy the local address into a browser (http://127.0.0.1:5000)
-'''
 #summarize takes in user text and creates a summary object in the database
 @app.route('/summarize', methods=['GET', 'POST'])
 def summarize():
-    '''if session.get('user'):''' #will be used for user implementation
     #creates an InputTextForm object from forms.py
     input_text_form = InputTextForm()
     #check that the submit button has been clicked and the text entry is valid
@@ -75,37 +49,60 @@ def summarize():
         #storing uploaded files in /instance directory
         if input_text_form.attach_text_file.data:
             file = input_text_form.attach_text_file.data
-            file.save('instance/' + file.filename)
-            input_text = get_text_from_txt('instance/' + file.filename)
+            file.save('instance/' + file.filename) #save the file for text extraction
+            input_text = get_text_from_txt('instance/' + file.filename) #extract text
+            os.remove('instance/' + file.filename) #remove file
         elif input_text_form.attach_image_file.data:
             file = input_text_form.attach_image_file.data
-            file.save('instance/' + file.filename)
-            input_text = get_text_from_image('instance/' + file.filename)
+            file.save('instance/' + file.filename) #save the file for text extraction
+            input_text = get_text_from_image('instance/' + file.filename) #extract text
+            os.remove('instance/' + file.filename) #remove file
         else:
             input_text = input_text_form.input_text.data
 
-        algorithm_choice = int(request.form['algorithm_choice'])
-        sentence_resolution = int(request.form['sentence_resolution'])
-        #run algorithm 1 on input_text
-        title, best_summary = generate_summary(input_text, algorithm_choice, sentence_resolution)
+        algorithm_choice = int(request.form['algorithm_choice']) #dist, bow, nlp
+        sentence_resolution = int(request.form['sentence_resolution']) #1,2,3
+        title, best_summary = generate_summary(input_text, algorithm_choice, sentence_resolution) #generate summary
+
         #create a new Summary object from models.py
-        new_summary = Summary(title, input_text, best_summary) #, session['user_id'] add when users are implemented
-        #add the new_summary object to the database
-        db.session.add(new_summary)
-        #commit changes to the database
-        db.session.commit()
-        #show the user the newly created summary
+        if session.get('user'):
+            #commit if the user is logged in
+            new_summary = Summary(title, input_text, best_summary, session['user_id'])
+            #add the new_summary object to the database
+            db.session.add(new_summary)
+            #commit changes to the database
+            db.session.commit()
+            #show the user the newly created summary
+        else:
+            #don't commit summary to database if the user isn't logged in
+            new_summary = Summary(title, input_text, best_summary, 0)
         return show_summary(new_summary)
+    
     #reload the summarize page if method is not POST
-    return render_template('summarize.html', form=input_text_form)
+    if session.get('user'):
+        return render_template('summarize.html', form=input_text_form, user=session['user'])
+    else:
+        return render_template('summarize.html', form=input_text_form)
 
 #show_summary shows a summary to the user
-@app.route('/show_summary')
-def show_summary(summary):
-    #check if a summary has been passed (currently the only implementation)
+@app.route('/show_summary<summary_id>')
+def show_summary(summary=None, summary_id=0):
+    #check if a summary has been passed
     if summary:
         #send summary to show_summary.html
-        return render_template('show_summary.html', summary = summary)
+        if session.get('user'):
+            #send user if available
+            return render_template('show_summary.html', summary = summary, user=session['user'])
+        else:
+            return render_template('show_summary.html', summary = summary)
+    #check if summary_id has been passed
+    elif summary_id:
+        summary = db.session.query(Summary).get(summary_id)
+        if session.get('user'):
+            #send user if available
+            return render_template('show_summary.html', summary = summary, user=session['user'])
+        else:
+            return render_template('show_summary.html', summary = summary)
     
     #will be used when functionality for user selecting from all previous summaries is added
     else:
@@ -149,10 +146,15 @@ def register():
         session['user'] = first_name
         session['user_id'] = new_user.id  # access id value from user model of this newly added user
         # show user dashboard view
-        return redirect(url_for('index'))
+        return redirect(url_for('tutorial'))
 
     return render_template("register.html", form=register_form)
-
+@app.route('/tutorial')
+def tutorial():
+    if session.get('user'):
+        return render_template('tutorial.html', user=session['user'])
+    else:
+        return render_template('tutorial.html')
 #@app.route('/login')
 # define a function same as normal
 #def login():
@@ -178,6 +180,7 @@ def login():
 
         # password check failed
         # set error message to alert user
+        print('error logging user in')
         login_form.password.errors = ["Incorrect username or password."]
         return render_template("login.html", form=login_form)
     else:
@@ -195,8 +198,39 @@ def logout():
 # define a function same as normal
 def pastSummaries():
     if session.get('user'):  # check that a user is currently logged into the session
-        return render_template('past_summaries.html', user=session[
-            'user'])  # return the html page for pastSummaries.html and pass session['user'] as user to the html page
+        past_summaries_list = db.session.query(Summary).filter_by(user_id = session['user_id'])
+        num_summaries = past_summaries_list.count()
+        num_pages = math.ceil(num_summaries/10)
+        return render_template('past_summaries.html', past_summaries_list=past_summaries_list, num_summaries=num_summaries, user=session['user'])  # return the html page for pastSummaries.html and pass session['user'] as user to the html page
     return render_template("past_summaries.html")  # return the html page for login.html
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)  # this runs the app locally
+
+
+'''
+!!!you can pip install -r requirements.txt to get all of the packages, but I am not sure which ones are unnecessary from other classes
+
+To install flask:
+    Mac:
+        cd into the project_app folder
+        python -m venv venv             #maybe python3; this creates a virtual environment
+        source venv/bin/activate        #activates the ve
+        pip install Flask               #maybe pip3; this installs flask
+
+    Windows:
+        cd into the project_app folder
+        python -m venv venv
+        source venv/Scripts/activate
+        pip install Flask
+
+To run the flask app
+
+I belive mac does:
+    export FLASK_APP=flask_file.py
+    flask run
+
+windows:
+    python flask_file.py
+
+copy the local address into a browser (http://127.0.0.1:5000)
+'''

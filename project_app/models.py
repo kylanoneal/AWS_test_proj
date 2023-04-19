@@ -7,13 +7,13 @@ class Summary(db.Model):
     title = db.Column("title", db.String(200))
     text = db.Column("text", db.String(500)) #currently limiting input text to 500 characters
     best_summary = db.Column("best_summary", db.String(5000))
-    #user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False) placeholder for when users are implemented
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False) #placeholder for when users are implemented
 
-    def __init__(self, title, text, best_summary): #add user_id as a parameter when users are implemented
+    def __init__(self, title, text, best_summary, user_id): #add user_id as a parameter when users are implemented
         self.title = title
         self.text = text
         self.best_summary = best_summary
-        #self.user_id = user_id
+        self.user_id = user_id
 
 
 class User(db.Model):
@@ -23,8 +23,8 @@ class User(db.Model):
     email = db.Column("email", db.String(100))
     password = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
-    sorting_order = db.Column("order", db.Boolean)
-    #summaries = db.relationship("Summary", backref="user", lazy=True)
+    #sorting_order = db.Column("order", db.Boolean)
+    summaries = db.relationship("Summary", backref="user", lazy=True)
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
@@ -32,4 +32,4 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.registered_on = datetime.date.today()
-        self.sorting_order = False
+        #self.sorting_order = False

@@ -28,7 +28,8 @@
              <div class="dropdown-content">
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
-                <a href="{{ url_for('help') }}">Help</a>
+                <a href="{{ url_for('help') }}">Help</a>                
+                <a href="{{ url_for('tutorial') }}">Tutorial</a>
                 {% if user %}
                     <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
@@ -38,13 +39,6 @@
                 {% endif %}
               </div>
         </div>
-
-        <!--{% if user %}                                                       {} indicates a python block
-                <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
-        {% else %}
-                <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
-                <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}-->
             </div>
         </nav>
     </header>
@@ -54,7 +48,7 @@
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second">Log in</h2><br>
                     <h3 class="login-screen-info">Log in to store the summaries that you create</h3>
-                    <form>
+                    <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
                     <div class="login-input-div">
                                 <div class="form-field">{{form.email.label(class="login-input-field-label")}}
                                     {{form.email(class="login-input-field")}}
@@ -89,7 +83,10 @@
         </div>
         <div class="shape"></div>
     <footer>
-            <h3 class="footer-text">UNCC 4155</h3>
+            <h3 class="footer-text">UNCC 4155</h3><br>
+            {% if user %}
+                {{user}}
+            {% endif %}
         </footer>
     </body>
 </html>

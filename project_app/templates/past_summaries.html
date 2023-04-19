@@ -17,15 +17,6 @@
     </head>
     <header>
         <nav class="home-nav-bar">
-
-        <!--{% if user %}                                                       {} indicates a python block
-                <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
-        {% else %}
-                <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
-                <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}
-            </div>-->
-
         <a href="{{ url_for('index') }}">
                     <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
                 </a>
@@ -38,6 +29,7 @@
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
                 <a href="{{ url_for('help') }}">Help</a>
+                <a href="{{ url_for('tutorial') }}">Tutorial</a>
                 {% if user %}
                     <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
@@ -56,15 +48,28 @@
             <div class="hero">
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second" style="padding:2%;">Your past summaries include:</h2>
-
-                    {% for i in range(0,len) %}
-                    <div class="text-summary">
-                            <h3>Original Text:</h3>
-                            <p class="summary-control">{{SummariesText[i]}}</p>
-                            <h3>Summary:</h3>
-                            <p class="summary-control">{{Summaries[i]}}</p>
-                         </div>
+                    {% if user %}
+                        <!--% for page_index in range(num_pages) %-->
+                            {% for summary_index in range(num_summaries) %}
+                                {% if past_summaries_list[summary_index] %}
+                                    <div class="text-summary">
+                                        
+                                        <a href="{{ url_for('show_summary', summary_id=past_summaries_list[summary_index].id) }}">
+                                            <!--<h3>Original Text:</h3>-->
+                                            <h3>Summary Title:</h3>
+                                            <p class="summary-control">{{ past_summaries_list[summary_index].title }}</p>
+                                            <h3>Summary:</h3>
+                                            <p class="summary-control">
+                                                {% for sentence in past_summaries_list[summary_index].best_summary.split('splitmehere')[1:]%}
+                                                {{ sentence }}
+                                                {% endfor %}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
+                        <!--% endfor %-->
+                    {% endif %}
 
                 </div>
             </div>
@@ -73,7 +78,10 @@
     </body>
     <footer>
         <div class = "footer">
-            <h3>UNCC 4155</h3>
+            <h3>UNCC 4155</h3><br>
+            {% if user %}
+                {{user}}
+            {% endif %}
         </div>
     </footer>
 </html>

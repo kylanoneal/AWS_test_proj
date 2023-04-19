@@ -17,15 +17,6 @@
     </head>
     <header>
         <nav class="home-nav-bar">
-
-        <!--{% if user %}                                                       {} indicates a python block
-                <a class="nav-btn" href="{{ url_for('index') }}">Logout</a>
-        {% else %}
-                <a class="nav-btn"  href="{{ url_for('index') }}">Sign In</a>
-                <a class="nav-btn nav-cta" href="{{ url_for('index') }}">Register</a>
-        {% endif %}
-            </div>-->
-
         <a href="{{ url_for('index') }}">
                     <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
                 </a>
@@ -38,6 +29,7 @@
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('summarize') }}">Summarize</a>
                 <a href="{{ url_for('help') }}">Help</a>
+                <a href="{{ url_for('tutorial') }}">Tutorial</a>
                 {% if user %}
                     <a href="{{ url_for('pastSummaries') }}">Past Summaries</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
@@ -84,7 +76,10 @@
     </body>
     <footer>
         <div class = "footer">
-            <h3>UNCC 4155</h3>
+            <h3>UNCC 4155</h3><br>
+            {% if user %}
+                {{user}}
+            {% endif %}
         </div>
     </footer>
 </html>
