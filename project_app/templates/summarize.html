@@ -56,11 +56,14 @@
                                 {{form.attach_text_file.label(class="text1-control")}}{{form.attach_text_file(class="text2-control")}}<br/>
                                 {{form.attach_image_file.label(class="text1-control")}}{{form.attach_image_file(class="text2-control")}}<br/>
                                 <!--p><input type="submit" value="Summarize"/></p-->
-                                {{ form.submit_text(class="file-control")}}
+
                             </div>
                             <div>
-                                {{form.algorithm_choice}}<br/>
-                                {{form.sentence_resolution}}<br/>
+                                {{form.algorithm_choice(class="selection-dropdown")}}<br/>
+                                {{form.sentence_resolution(class="selection-dropdown")}}<br/>
+                            </div>
+                            <div style="padding-top:10%">
+                                {{ form.submit_text(class="file-control")}}
                             </div>
                         </form>
                     </div>

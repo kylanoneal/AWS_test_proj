@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Projects App">
-        <title>Home</title>
+        <title>Tutorial</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -12,7 +12,7 @@
             rel="stylesheet"
         />
         <!-- styles -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='tutorial.css') }}">
         <link rel="icon" href="{{url_for('static', filename='TSBSELogo2.png')}}">
     </head>
     <header>
@@ -45,16 +45,17 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">Welcome to Concisely!</h2><br>
-                    <h3 class="home-screen-info">There is so much information available at our fingertips.
-                        In this digital age, it is often difficult and time-consuming to determine if a body of text is what we are looking for.
-                        With this application there is an efficient way to generate a concise summary of any text, text file or image!
-                        <br><br>Sometimes all we need is a brief overview. Summaries are easier to understand
-                        than long-winded texts filled with scientific jargon. Generating a summary with all the main points is much faster than
-                        trying to skim through an entire document and comprehend the important parts.
-                        The aim of this application help users decide if they would like to pass on a document
-                        or read deeper into it without having to spend the time to skim or read the entire text.</h3><br><br><br>
-                     <a href="{{ url_for('summarize') }}" class="home-icon">
+                    <h2 class="heading-secondary hero-second">Tutorial</h2><br>
+                    <h3 class="home-screen-info">Copy + Paste text into the text box, choose an image file or choose a .txt file from your computer.</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='copyandpaste.JPG')}}">
+                    <h3 class="home-screen-info">Select an algorithm from the algorithms drop down menu (See algorithm description table in the Help Tab from the navigation menu in the top right)</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='algoSelection.JPG')}}">
+                    <h3 class="home-screen-info">Select the length of the summary from the sentences drop down menu. Then press submit.</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='sentenceSelection.JPG')}}">
+                    <h3 class="home-screen-info">Once submit is pressed, you will be navigated to the summary page containing your summary and original text</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='summary.JPG')}}">
+                    <h3 class="home-screen-info">Click the button below to get started!</h3><br><br>
+                    <a href="{{ url_for('summarize') }}" class="home-icon">
                          <button class="home-page-summary-button">Go to Text Summarization</button>
                      </a><br><br><br><br><br><br><br><br><br><br><br>
 
