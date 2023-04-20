@@ -204,7 +204,9 @@ def pastSummaries():
         return render_template('past_summaries.html', past_summaries_list=past_summaries_list, num_summaries=num_summaries, user=session['user'])  # return the html page for pastSummaries.html and pass session['user'] as user to the html page
     return render_template("past_summaries.html")  # return the html page for login.html
 
-app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)  # this runs the app locally
+
+if __name__=="__main__":
+    app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)  # this runs the app locally
 
 
 '''
