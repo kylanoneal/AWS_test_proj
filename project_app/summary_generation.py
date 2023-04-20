@@ -4,6 +4,11 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from datasets import load_dataset
 
 
+def save_model(model_name):
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    model.save_pretrained(model_name + ".pt")
+
+
 def get_summ_from_pretrained(model_name, article):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -30,6 +35,7 @@ def get_summ_from_pretrained(model_name, article):
 
 # Get some sample outputs for some leading pre-trained summarization models
 if __name__ == "__main__":
+    # save_model("t5-base")
     cnn_dataset = load_dataset("cnn_dailymail", "3.0.0", split='train[:1%]')
 
     wrapper = textwrap.TextWrapper(width=75)

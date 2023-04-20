@@ -10,7 +10,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 #nltk.download('maxent_ne_chunker')
 #nltk.download('words')
 
-from summary_generation import get_summ_from_pretrained
+from sagemaker_endpoints import invoke_endpoint
 
 
 #reads input text and returns lists of contained sentences and words
@@ -133,11 +133,10 @@ def generate_summary(input_text, algorithm_choice, sentence_resolution):
         best_summary = convert_summary(best_summary)
         return title, best_summary
     elif algorithm_choice == 2:
-        #set title to be first sentence
-        title = sent_tokenize(input_text)[0]
-        #generate summary using pre-trained model
-        best_summary = get_summ_from_pretrained("t5-large", input_text)
-        #split into sentences and convert summary
+        #get first sentence
+        title = sent_tokenize(input_text[:200])[0]
+        #invoke transformer endpoint
+        best_summary = invoke_endpoint(input_text)
         best_summary = convert_summary(sent_tokenize(best_summary))
         return title, best_summary
 
