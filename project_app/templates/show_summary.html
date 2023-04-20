@@ -47,7 +47,7 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">The sentence(s) that best summarizes your text is: </h2>
+                    <h2 class="spacer">The sentence(s) that best summarizes your text is: </h2>
                     {% if summary %}
                     <div class="text-summary">
                             {% for sentence in summary.best_summary.split('splitmehere')[1:]%}

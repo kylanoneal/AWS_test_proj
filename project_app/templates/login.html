@@ -70,13 +70,15 @@
                                     </ul>
                                     {% endif %}
                                 </div>
+                        <div style="padding-top:20%">
                                 {{form.submit(class="login-button")}}
+                            </div>
                         </div>
                     </form>
                     <br><br><br><br>
                     <div class="account-creation-text">
-                     <p>Dont have an account? Click</p><a style="color:blue; text-decoration:underline;" href="{{ url_for('help') }}">here
-                        <a href="{{ url_for('register') }}">Register</a></a><p>to create one</p>
+                     <p>Dont have an account? Click here to</p>
+                        <a style="color:blue; text-decoration:underline;" href="{{ url_for('register') }}">Register for an account</a>
                     </div>
                 </div>
             </div>

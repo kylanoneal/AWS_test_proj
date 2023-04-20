@@ -276,7 +276,6 @@ display: block;
 background-color: #F9CD8D;
 }
 .login-input-field{
-text-align: center;
 padding: 1%;
 }
 .login-input-field-label{
@@ -285,4 +284,8 @@ font-size:15px;
 .login-input-div{
 padding: 10%;
 display:table-row;
+}
+
+.account-creation-text{
+padding-bottom: 10%;
 }
