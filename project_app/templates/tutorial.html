@@ -18,8 +18,11 @@
     <header>
         <nav class="home-nav-bar">
             <a href="{{ url_for('index') }}">
-                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
-                </a>
+                <div class="change">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo"
+                        class="change-img">
+                </div>
+            </a>
             <h2 class="heading-primary hero-first"> Concisely - Text Summarization by Sentence Extraction</h2>
             <div class= "dropdown">
             <button class="drop-btn">

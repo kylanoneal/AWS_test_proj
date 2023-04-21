@@ -18,8 +18,11 @@
     <header>
         <nav class="home-nav-bar">
             <a href="{{ url_for('index') }}">
-                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
-                </a>
+                <div class="change">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo"
+                        class="change-img">
+                </div>
+            </a>
             <h2 class="heading-primary hero-first">Concisely - Text Summarization by Sentence Extraction</h2>
             <div class= "dropdown">
             <button class="drop-btn">
@@ -48,12 +51,21 @@
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second">Help</h2><br>
                     <div style="border:2px solid black">
-                    <p class="help-screen-info" style="font-weight:500">How to use the application</p><br><br>
-                    <p class="help-screen-info">Hover on the Menu Icon in the top right and click "Summarize" or click the "Go to Text Summarization" button below.</p>
-                    <p class="help-screen-info">Copy + Paste text into the text box or choose a .png or .txt file from your computer. </p>
-                        <p class="help-screen-info">Select an algorithm from the algorithms drop down menu(See algorithm description table below)</p>
-                        <p class="help-screen-info">Select the length of the summary from the sentences drop down menu. </p>
-                        <p class="help-screen-info">Click submit: This will lead to a summary page containing the summary and the original text. </p>
+                    <p class="help-screen-info" style="font-weight:500">List of allowed text and image formats</p><br><br>
+                    <p class="help-screen-info">Text formats: PDF, DOCX, TXT</p>
+                    <p class="help-screen-info">Image formats: PNG, JPEG</p>
+                    <h3 class="help-screen-info">Instead of using the textbox, you can upload text and image files.
+                        After uploading a file, select from one of the three algorithms (listed below) and the desired
+                        number of sentences. After clicking submit, you will be directed to a new page that shows the input and output text.</h3>
+                    <img style="height:500px; width:500px; border: 1px solid black;" src="{{url_for('static', filename='textexample.png')}}" alt ="PDF">
+                    <p></p>
+                    <img style="height:500px; width:1000px; border: 1px solid black;" src="{{url_for('static', filename='textexampleoutput.png')}}" alt ="DOCX">
+                    <p></p>
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='pdf.png')}}" alt ="PDF">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='docx.png')}}" alt ="DOCX">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='txt.png')}}" alt ="TXT">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='png.png')}}" alt ="PNG">
+                    <img style="height:85px; width:85px;" src="{{url_for('static', filename='jpeg.png')}}" alt ="JPEG">
                      <div style="padding:10px">
                         <a href="{{ url_for('summarize') }}" class="home-icon">
                          <button class="home-page-summary-button">Go to Text Summarization</button>

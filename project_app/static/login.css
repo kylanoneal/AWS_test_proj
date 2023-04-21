@@ -42,7 +42,9 @@ margin-right: auto;
  margin-left: auto;
  padding: 5%;
 }
-
+p{
+    padding: 20px;
+}
 label {
 display: table-cell;
 font-size:20px;
@@ -65,7 +67,9 @@ footer{
     display: inline-block;
     padding: 10px;
 }
-
+.change-img:hover{
+    content: url("TSBSELogo3.png");
+}
 .center{
     display: flex;
     justify-content: center;
@@ -167,16 +171,34 @@ padding-bottom:20px;
     -webkit-transition-duration: 0.4s; /* Safari */
 }
 
-.login-button{
+a.login-button{
     background-color: #648ABE;
-    border-radius: 12px;
     color: black;
-    padding: 15px 32px;
+/*    padding: 15px 32px;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
     position:relative;
     font-size: 16px;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    font-weight: 600;
+}
+
+.login-button{
+    background-color: #648ABE;
+    color: black;
+/*    padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    font-weight: 600;
 }
 
 .hero{
@@ -195,6 +217,11 @@ padding-bottom:20px;
 
 .hero-second{
     padding-top: 4rem;
+}
+
+.hero-third{
+    font-weight: 500;
+    font-size: 1.5rem;
 }
 
 .hero-cta{
@@ -219,6 +246,13 @@ padding-bottom:20px;
     filter: brightness(140%);
     color: #ffffff;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
+}
+
+.new-summary-container{
+    display: inline-block;
+}
+.password-info{
+    display: inline-block;
 }
 
 .nav-cta:hover, .nav-cta:active{

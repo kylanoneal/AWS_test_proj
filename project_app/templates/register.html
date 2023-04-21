@@ -17,9 +17,12 @@
     </head>
     <header>
         <nav class="home-nav-bar">
-        <a href="{{ url_for('index') }}">
-                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo">
-                </a>
+            <a href="{{ url_for('index') }}">
+                <div class="change">
+                    <img style="height:80px; width:80px;" src="{{url_for('static', filename='TSBSELogo2.png')}}" alt ="Concisely Logo"
+                        class="change-img">
+                </div>
+            </a>
             <h2 class="heading-primary hero-first">Concisely - Text Summarization by Sentence Extraction</h2>
         <div class= "dropdown">
             <button class="drop-btn">
@@ -47,7 +50,20 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
-                    <h2 class="heading-secondary hero-second">Enter your information below to create an account.</h2>
+                    <h2 class="heading-secondary hero-second">Register</h2>
+                    <h3 class="login-screen-info">Enter your information below to create an account.</h3>
+                    <div class="password-info">
+                        <h3 class="hero-third">Passwords must include a capital letter,</h3>
+                        <h3 class="hero-third"> number, and special character.</h3>
+                        <p></p>
+                        <p></p>
+                        <h3 class="hero-third">Already have account?</h3>
+                        <form action="/login">
+                            <button class="login-button" type="submit">Login</button>
+                        </form>
+                        <p></p>
+                        <p></p>
+                    </div>
                     <div class="new-summary-container">
                         <form action="{{ url_for('register') }}" method="POST">
                             <div class="form-container">
@@ -102,8 +118,8 @@
                                     {% endif %}
                                 </div>
                                 <div style="padding-top:20%">
-                                {{form.submit(class="login-button")}}
-                                    </div>
+                                    {{form.submit(class="login-button")}}
+                                </div>
                             </div>
                         </form>
                     </div>
