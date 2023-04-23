@@ -63,8 +63,8 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.21
 Pygments==2.13.0
+PyMuPDF==1.22.1
 pyparsing==3.0.9
-PyPDF2==3.0.1
 pyrsistent==0.18.1
 pytesseract==0.3.10
 python-dateutil==2.8.2
