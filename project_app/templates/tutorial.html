@@ -49,12 +49,16 @@
             <div class="hero">
                 <div class="hero-txt">
                     <h2 class="heading-secondary hero-second">Tutorial</h2><br>
-                    <h3 class="home-screen-info">Copy + Paste text into the text box, choose an image file or choose a .txt file from your computer.</h3>
+                    <h3 style="text-align:center" class="home-screen-info">Copy + Paste text into the text box, choose an image file or choose a .txt file from your computer. (For more information on which formats are available for image and text uploads check out the help page or click the information icon)<a href="{{ url_for('help') }}"><img style="height:25px; width:25px;" src="{{url_for('static', filename='icons8-info-30.png')}}"></a></h3>
                     <img class="sampleImage" src="{{url_for('static', filename='copyandpaste.JPG')}}">
-                    <h3 class="home-screen-info">Select an algorithm from the algorithms drop down menu (See algorithm description table in the Help Tab from the navigation menu in the top right)</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='textFileUpload.JPG')}}">
+                    <img class="sampleImage" src="{{url_for('static', filename='imageUpload.JPG')}}">
+                    <h3 class="home-screen-info">Select an algorithm from the algorithms drop down menu (For help understanding the different algorithms check out the algorithm description table in the Help page from the navigation menu in the top right)<a href="{{ url_for('help') }}"><img style="height:25px; width:25px;" src="{{url_for('static', filename='icons8-info-30.png')}}"></a></h3>
                     <img class="sampleImage" src="{{url_for('static', filename='algoSelection.JPG')}}">
-                    <h3 class="home-screen-info">Select the length of the summary from the sentences drop down menu. Then press submit.</h3>
+                    <h3 class="home-screen-info">Select the length of the summary from the sentences drop down menu.</h3>
                     <img class="sampleImage" src="{{url_for('static', filename='sentenceSelection.JPG')}}">
+                    <h3 class="home-screen-info">Press submit.</h3>
+                    <img class="sampleImage" src="{{url_for('static', filename='pressSubmit.JPG')}}">
                     <h3 class="home-screen-info">Once submit is pressed, you will be navigated to the summary page containing your summary and original text</h3>
                     <img class="sampleImage" src="{{url_for('static', filename='summary.JPG')}}">
                     <h3 class="home-screen-info">Click the button below to get started!</h3><br><br>
