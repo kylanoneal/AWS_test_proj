@@ -50,7 +50,7 @@ def summarize():
         if input_text_form.attach_text_file.data:
             file = input_text_form.attach_text_file.data
             file.save('instance/' + file.filename) #save the file for text extraction
-            input_text = get_text_from_txt('instance/' + file.filename) #extract text
+            input_text = get_text_from_text_file('instance/' + file.filename) #extract text
             os.remove('instance/' + file.filename) #remove file
         elif input_text_form.attach_image_file.data:
             file = input_text_form.attach_image_file.data
