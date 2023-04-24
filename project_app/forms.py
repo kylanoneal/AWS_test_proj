@@ -76,7 +76,7 @@ class InputTextForm(FlaskForm):
 
     genre_choice = SelectField('Genre:', validate_choice=False, choices=[("news", 'News Article'), ("scientific", 'Scientific Paper'), ("fiction", 'Fiction')])
 
-    model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[("bart", 'Bart-Large-CNN'), ("pegasus", 'Pegasus-XSUM'), ("t5", 'T5-Base')])
+    model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[("bart", 'Bart'), ("pegasus", 'Pegasus'), ("t5", 'T5')])
 
     sentence_extraction_button = SubmitField('Sentence Extraction')
 

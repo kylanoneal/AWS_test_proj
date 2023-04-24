@@ -45,4 +45,6 @@ def create_endpoint(endpoint_name, model_name, memory_size):
 
 
 if __name__ == "__main__":
-    create_endpoint("t5-base-4-20", "t5-base", 3072)
+    create_endpoint("pegasus-cnn-4-24", "google/pegasus-cnn_dailymail", 6144)
+
+
