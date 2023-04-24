@@ -74,6 +74,14 @@ class InputTextForm(FlaskForm):
 
     sentence_resolution = SelectField('Resolution:', validate_choice=False, choices=[(1, '1 Sentence'), (2, '2 Sentences'), (3, '3 Sentences')])
 
+    genre_choice = SelectField('Genre:', validate_choice=False, choices=[("news", 'News Article'), ("scientific", 'Scientific Paper'), ("fiction", 'Fiction')])
+
+    model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[("bart", 'Bart-Large-CNN'), ("pegasus", 'Pegasus-XSUM'), ("t5", 'T5-Base')])
+
+    sentence_extraction_button = SubmitField('Sentence Extraction')
+
+    transformer_model_button = SubmitField('Transformer Models')
+
     submit_text = SubmitField('Submit')
 
     #username = TextAreaField('Username')

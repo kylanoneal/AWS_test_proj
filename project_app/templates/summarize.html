@@ -62,9 +62,22 @@
 
                             </div>
                             <div>
+                                {{ form.sentence_extraction_button(class="file-control")}}
+                                {{ form.transformer_model_button(class="file-control")}}
+                            </div>
+
+                            {% if sentence_extraction: %}
+                              <div>
                                 {{form.algorithm_choice(class="selection-dropdown")}}<br/>
                                 {{form.sentence_resolution(class="selection-dropdown")}}<br/>
-                            </div>
+                              </div>
+                            {% else %}
+                              <div>
+                                {{form.genre_choice(class="selection-dropdown")}}<br/>
+                                {{form.model_choice(class="selection-dropdown")}}<br/>
+                              </div>
+                            {% endif %}
+
                             <div style="padding-top:10%">
                                 {{ form.submit_text(class="file-control")}}
                             </div>

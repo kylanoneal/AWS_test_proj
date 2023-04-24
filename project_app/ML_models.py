@@ -123,7 +123,7 @@ def gen_bag_of_words(words: list):
 
 
 #controller for which algorithm to use
-def generate_summary(input_text, algorithm_choice, sentence_resolution):
+def generate_sent_extraction(input_text, algorithm_choice, sentence_resolution):
     if algorithm_choice == 0:
         title, total_summary = algo_1(input_text, sentence_resolution)
         best_summary = convert_summary(total_summary)
@@ -132,13 +132,16 @@ def generate_summary(input_text, algorithm_choice, sentence_resolution):
         title, best_summary = algo_2(input_text, sentence_resolution)
         best_summary = convert_summary(best_summary)
         return title, best_summary
-    elif algorithm_choice == 2:
-        #get first sentence
-        title = sent_tokenize(input_text[:200])[0]
-        #invoke transformer endpoint
-        best_summary = invoke_endpoint(input_text)
-        best_summary = convert_summary(sent_tokenize(best_summary))
-        return title, best_summary
+
+
+def generate_trans_inference(input_text, genre_choice, model_choice):
+
+    # get first sentence
+    title = sent_tokenize(input_text[:200])[0]
+    # invoke transformer endpoint
+    best_summary = invoke_endpoint(input_text, genre_choice, model_choice)
+    best_summary = convert_summary(sent_tokenize(best_summary))
+    return title, best_summary
 
 #converts the summary list into a single string
 def convert_summary(best_summary):

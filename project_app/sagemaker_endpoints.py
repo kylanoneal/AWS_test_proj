@@ -2,9 +2,12 @@ from sagemaker.huggingface.model import HuggingFaceModel
 from sagemaker.serverless import ServerlessInferenceConfig
 from sagemaker.huggingface.model import HuggingFacePredictor
 
+endpoint_dict = {'news': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"},
+            'scientific': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"},
+            'fiction': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"}}
 
-def invoke_endpoint(input_text):
-    predictor = HuggingFacePredictor(endpoint_name="bart-large-cnn-more-mem")
+def invoke_endpoint(input_text, genre_choice, model_choice):
+    predictor = HuggingFacePredictor(endpoint_name=endpoint_dict[genre_choice][model_choice])
     prediction = predictor.predict({'inputs': input_text})
     return prediction[0]['summary_text']
 
