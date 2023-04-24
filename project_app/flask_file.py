@@ -82,8 +82,8 @@ def summarize():
             title, best_summary = generate_sent_extraction(input_text, algorithm_choice,
                                                            sentence_resolution)  # generate summary
         else:
-            genre_choice = str(request.form['genre_choice'])  # dist, bow, nlp
-            model_choice = str(request.form['model_choice'])  # 1,2,3
+            genre_choice = request.form['genre_choice']
+            model_choice = request.form['model_choice']
             title, best_summary = generate_trans_inference(input_text, genre_choice, model_choice)  # generate summary
 
         # create a new Summary object from models.py
