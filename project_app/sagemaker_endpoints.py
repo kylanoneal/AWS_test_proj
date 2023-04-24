@@ -2,9 +2,9 @@ from sagemaker.huggingface.model import HuggingFaceModel
 from sagemaker.serverless import ServerlessInferenceConfig
 from sagemaker.huggingface.model import HuggingFacePredictor
 
-endpoint_dict = {'news': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"},
-            'scientific': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"},
-            'fiction': {'t5': "bart-large-cnn-more-mem", 'bart': "bart-large-cnn-more-mem", 'pegasus': "bart-large-cnn-more-mem"}}
+endpoint_dict = {'news': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"},
+            'scientific': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"},
+            'fiction': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"}}
 
 def invoke_endpoint(input_text, genre_choice, model_choice):
     predictor = HuggingFacePredictor(endpoint_name=endpoint_dict[genre_choice][model_choice])
@@ -12,7 +12,7 @@ def invoke_endpoint(input_text, genre_choice, model_choice):
     return prediction[0]['summary_text']
 
 
-def create_endpoint(endpoint_name, model_name, memory_size):
+def create_endpoint(endpoint_name, model_name, memory_size, max_concurrency):
     # Specify Model Image_uri
     image_uri = '763104351884.dkr.ecr.us-east-1.amazonaws.com/huggingface-pytorch-inference:1.13.1-transformers4.26.0-cpu-py39-ubuntu20.04'
 
@@ -35,7 +35,7 @@ def create_endpoint(endpoint_name, model_name, memory_size):
 
     # Specify MemorySizeInMB and MaxConcurrency
     serverless_config = ServerlessInferenceConfig(
-        memory_size_in_mb=memory_size, max_concurrency=1,
+        memory_size_in_mb=memory_size, max_concurrency=max_concurrency,
     )
 
     # deploy the serverless endpoint
@@ -45,6 +45,12 @@ def create_endpoint(endpoint_name, model_name, memory_size):
 
 
 if __name__ == "__main__":
-    create_endpoint("pegasus-cnn-4-24", "google/pegasus-cnn_dailymail", 6144)
+    endpoints_to_create = {'bart-cnn-4-24.0': ("facebook/bart-large-cnn", 6144, 5),
+                           'flan-t5-4-24.0': ("google/flan-t5-base", 6144, 5),
+                           'pegasus-cnn-4-24.0': ("google/pegasus-cnn_dailymail", 6144, 5)}
+
+    for key in endpoints_to_create.keys():
+        model_name, mem, max_concurrency = endpoints_to_create[key]
+        create_endpoint(key, model_name, mem, max_concurrency)
 
 
