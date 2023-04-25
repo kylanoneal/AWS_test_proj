@@ -59,25 +59,27 @@
                                 {{form.attach_text_file.label(class="text1-control")}}{{form.attach_text_file(class="text2-control")}}<br/>
                                 {{form.attach_image_file.label(class="text1-control")}}{{form.attach_image_file(class="text2-control")}}
                                 <!--p><input type="submit" value="Summarize"/></p-->
-
                             </div>
-                            <div>
-                                {{ form.sentence_extraction_button(class="file2-control")}}
-                                {{ form.transformer_model_button(class="file2-control")}}
-                                <br/><br/><br/>
+                            <div class="method-selector">
+                                <label for="method_extraction">Sentence Extraction:</label>
+                                <input type="radio" id="method_extraction" name="method" value="extraction" checked>
+                                <label for="method_transformer">Transformer Models:</label>
+                                <input type="radio" id="method_transformer" name="method" value="transformer">
                             </div>
 
-                            {% if sentence_extraction: %}
-                            <div>
+                            <div id="div_algorithm_choice">
                                 {{form.algorithm_choice(class="selection-dropdown")}}<br/>
+                            </div>
+                            <div id="div_sentence_resolution">
                                 {{form.sentence_resolution(class="selection-dropdown")}}<br/>
                             </div>
-                            {% else %}
-                            <div>
+                            <div id="div_genre_choice">
                                 {{form.genre_choice(class="selection-dropdown")}}<br/>
+                            </div>
+                            <div id="div_model_choice">
                                 {{form.model_choice(class="selection-dropdown")}}<br/>
                             </div>
-                            {% endif %}
+
 
                             <div style="padding-top:10%">
                                 {{ form.submit_text(class="file-control")}}
@@ -104,6 +106,48 @@
                                 });
                             }
                         </script>
+
+                        <script>
+                        function toggleFields() {
+                            let methodExtraction = document.getElementById('method_extraction');
+                            let divAlgorithmChoice = document.getElementById('div_algorithm_choice');
+                            let divSentenceResolution = document.getElementById('div_sentence_resolution');
+                            let divGenreChoice = document.getElementById('div_genre_choice');
+                            let divModelChoice = document.getElementById('div_model_choice');
+
+                            if (methodExtraction.checked) {
+                                // Show div_algorithm_choice and div_sentence_resolution when Sentence Extraction is selected
+                                divAlgorithmChoice.style.display = 'block';
+                                divSentenceResolution.style.display = 'block';
+
+                                // Hide div_genre_choice and div_model_choice
+                                divGenreChoice.style.display = 'none';
+                                divModelChoice.style.display = 'none';
+                            } else {
+                                // Hide div_algorithm_choice and div_sentence_resolution when Transformer Models is selected
+                                divAlgorithmChoice.style.display = 'none';
+                                divSentenceResolution.style.display = 'none';
+
+                                // Show div_genre_choice and div_model_choice
+                                divGenreChoice.style.display = 'block';
+                                divModelChoice.style.display = 'block';
+                            }
+                        }
+                        </script>
+
+
+
+
+                       <script>
+                        document.addEventListener('DOMContentLoaded', toggleFields);
+
+                        let methodExtraction = document.getElementById('method_extraction');
+                        let methodTransformer = document.getElementById('method_transformer');
+                        methodExtraction.addEventListener('change', toggleFields);
+                        methodTransformer.addEventListener('change', toggleFields);
+                        </script>
+
+
 
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import os  # os is used to get environment variables IP & PORT
 from flask import Flask  # Flask allows python to interact with html,css,javascript
 from flask import \
     render_template  # a template is the webpage html that gets returned by each function in the python file
-from flask import request, url_for, redirect, session, jsonify #send_from_directory, flash  # utility functions
+from flask import request, url_for, redirect, session, jsonify  # send_from_directory, flash  # utility functions
 from database import db  # sqlaclhemy database
 
 '''models holds the objects stored in the database'''
@@ -47,22 +47,11 @@ def index():
 # summarize takes in user text and creates a summary object in the database
 @app.route('/summarize', methods=['GET', 'POST'])
 def summarize():
-    if not 'sentence_extraction' in session:
-        session['sentence_extraction'] = True
-
     # creates an InputTextForm object from forms.py
     input_text_form = InputTextForm()
     # check that the submit button has been clicked and the text entry is valid
     if request.method == 'POST' and input_text_form.validate_on_submit():
         # retrieve the input text
-
-        if "sentence_extraction_button" in request.form:
-            session['sentence_extraction'] = True
-            return render_summarize(input_text_form)
-        elif "transformer_model_button" in request.form:
-            input_text_form.genre_choice.data = ("news")
-            session['sentence_extraction'] = False
-            return render_summarize(input_text_form)
 
         # storing uploaded files in /instance directory
         if input_text_form.attach_text_file.data:
@@ -78,7 +67,7 @@ def summarize():
         else:
             input_text = input_text_form.input_text.data
 
-        if session['sentence_extraction']:
+        if request.form['method'] == 'extraction':
             algorithm_choice = int(request.form['algorithm_choice'])  # dist, bow, nlp
             sentence_resolution = int(request.form['sentence_resolution'])  # 1,2,3
             title, best_summary = generate_sent_extraction(input_text, algorithm_choice,
@@ -108,10 +97,9 @@ def summarize():
 
 def render_summarize(form):
     if session.get('user'):
-        return render_template('summarize.html', form=form, sentence_extraction=session['sentence_extraction'],
-                               user=session['user'])
+        return render_template('summarize.html', form=form, user=session['user'])
     else:
-        return render_template('summarize.html', form=form, sentence_extraction=session['sentence_extraction'])
+        return render_template('summarize.html', form=form)
 
 
 @app.route('/get_models/<genre>')
@@ -124,6 +112,8 @@ def get_models(genre):
         model_options.append(m_dict)
 
     return jsonify({'model_options': model_options})
+
+
 # show_summary shows a summary to the user
 @app.route('/show_summary<summary_id>')
 def show_summary(summary=None, summary_id=0):
