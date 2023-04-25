@@ -46,8 +46,8 @@ def create_endpoint(endpoint_name, model_name, memory_size, max_concurrency):
 
 if __name__ == "__main__":
 
-    create_endpoint("pegasus-xsum-4-24.0", "google/pegasus-xsum", 6144, 5)
-    create_endpoint("bart-xsum-4-24.0", "facebook/bart-large-xsum", 6144, 5)
+    create_endpoint("pegasus-xsum-4-24", "google/pegasus-xsum", 6144, 5)
+    create_endpoint("bart-xsum-4-24", "facebook/bart-large-xsum", 6144, 5)
 
     # endpoints_to_create = [("bart-cnn-4-24.0", "facebook/bart-large-cnn", 6144, 5),
     #                        ("flan-t5-4-24.0", "google/flan-t5-base", 6144, 5),
