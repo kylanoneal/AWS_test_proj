@@ -57,31 +57,54 @@
                                 <!--textarea name="inputText"  rows="6" cols="0" style="font-size: 2rem">Input text here...</textarea-->
                                 {{form.input_text(class="form-control")}} <br/>
                                 {{form.attach_text_file.label(class="text1-control")}}{{form.attach_text_file(class="text2-control")}}<br/>
-                                {{form.attach_image_file.label(class="text1-control")}}{{form.attach_image_file(class="text2-control")}}<br/>
+                                {{form.attach_image_file.label(class="text1-control")}}{{form.attach_image_file(class="text2-control")}}
                                 <!--p><input type="submit" value="Summarize"/></p-->
 
                             </div>
                             <div>
-                                {{ form.sentence_extraction_button(class="file-control")}}
-                                {{ form.transformer_model_button(class="file-control")}}
+                                {{ form.sentence_extraction_button(class="file2-control")}}
+                                {{ form.transformer_model_button(class="file2-control")}}
+                                <br/><br/><br/>
                             </div>
 
                             {% if sentence_extraction: %}
-                              <div>
+                            <div>
                                 {{form.algorithm_choice(class="selection-dropdown")}}<br/>
                                 {{form.sentence_resolution(class="selection-dropdown")}}<br/>
-                              </div>
+                            </div>
                             {% else %}
-                              <div>
+                            <div>
                                 {{form.genre_choice(class="selection-dropdown")}}<br/>
                                 {{form.model_choice(class="selection-dropdown")}}<br/>
-                              </div>
+                            </div>
                             {% endif %}
 
                             <div style="padding-top:10%">
                                 {{ form.submit_text(class="file-control")}}
                             </div>
                         </form>
+
+                        <script>
+                            let genre_select = document.getElementById('genre_choice')
+                            let model_select = document.getElementById('model_choice')
+
+                            genre_select.onchange = function() {
+                                genre = genre_select.value;
+
+                                fetch('/get_models/' + genre).then(function(response) {
+                                    response.json().then(function(data) {
+
+                                        let optionHTML = ''
+                                        for(let model of data.model_options){
+                                            optionHTML += '<option value="' + model.id + '">' + model.name + '</option>';
+                                        }
+
+                                        model_select.innerHTML = optionHTML;
+                                    });
+                                });
+                            }
+                        </script>
+
                     </div>
                 </div>
             </div>

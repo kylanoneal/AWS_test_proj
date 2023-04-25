@@ -5,7 +5,7 @@ import os  # os is used to get environment variables IP & PORT
 from flask import Flask  # Flask allows python to interact with html,css,javascript
 from flask import \
     render_template  # a template is the webpage html that gets returned by each function in the python file
-from flask import request, url_for, redirect, session, send_from_directory, flash  # utility functions
+from flask import request, url_for, redirect, session, jsonify #send_from_directory, flash  # utility functions
 from database import db  # sqlaclhemy database
 
 '''models holds the objects stored in the database'''
@@ -16,6 +16,7 @@ from models import User as User
 from forms import RegisterForm, LoginForm, InputTextForm
 from werkzeug.utils import secure_filename  # url_for() is how we supply the url for most functions
 from ML_models import generate_sent_extraction, generate_trans_inference
+from sagemaker_endpoints import endpoint_dict
 from text_from_file import *
 import bcrypt  # password hashing for security
 import sys
@@ -59,6 +60,7 @@ def summarize():
             session['sentence_extraction'] = True
             return render_summarize(input_text_form)
         elif "transformer_model_button" in request.form:
+            input_text_form.genre_choice.data = ("news")
             session['sentence_extraction'] = False
             return render_summarize(input_text_form)
 
@@ -112,6 +114,16 @@ def render_summarize(form):
         return render_template('summarize.html', form=form, sentence_extraction=session['sentence_extraction'])
 
 
+@app.route('/get_models/<genre>')
+def get_models(genre):
+    models = endpoint_dict[genre]
+    model_options = []
+
+    for key in models:
+        m_dict = {'id': key, 'name': models[key]}
+        model_options.append(m_dict)
+
+    return jsonify({'model_options': model_options})
 # show_summary shows a summary to the user
 @app.route('/show_summary<summary_id>')
 def show_summary(summary=None, summary_id=0):

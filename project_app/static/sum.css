@@ -76,6 +76,21 @@ footer{
     height: 30px;
     font-weight: 600;
 }
+
+.file2-control{
+    background-color: #648ABE;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+    font-weight: 600;
+}
+
 .text1-control{
     font-weight: 600;
 }
