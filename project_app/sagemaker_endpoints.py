@@ -45,11 +45,26 @@ def create_endpoint(endpoint_name, model_name, memory_size, max_concurrency):
 
 
 if __name__ == "__main__":
-    endpoints_to_create = [("bart-cnn-4-24.0", "facebook/bart-large-cnn", 6144, 5),
-                           ("flan-t5-4-24.0", "google/flan-t5-base", 6144, 5),
-                           ("pegasus-cnn-4-24.0", "google/pegasus-cnn_dailymail", 6144, 5)]
 
-    for endpt, model, mem, max_concur in endpoints_to_create:
-        create_endpoint(endpt, model, mem, max_concur)
+    create_endpoint("pegasus-xsum-4-24.0", "google/pegasus-xsum", 6144, 5)
+    create_endpoint("bart-xsum-4-24.0", "facebook/bart-large-xsum", 6144, 5)
+
+    # endpoints_to_create = [("bart-cnn-4-24.0", "facebook/bart-large-cnn", 6144, 5),
+    #                        ("flan-t5-4-24.0", "google/flan-t5-base", 6144, 5),
+    #                        ("pegasus-cnn-4-24.0", "google/pegasus-cnn_dailymail", 6144, 5),
+    #                        ("bigbird-pegasus-arxiv-4-24.0", "google/bigbird-pegasus-large-arxiv", 6144, 5),
+    #                        ("bart-arxiv-4-24.0", "ccdv/lsg-bart-base-16384-arxiv", 6144, 5),
+    #                        ("pegasus-tifu-4-24.0", "google/pegasus-reddit_tifu", 6144, 5),
+    #                        ("bart-samsum-4-24.0", "philschmid/bart-large-cnn-samsum", 6144, 5),
+    #                        ("flan-t5-samsum-4-24.0", "philschmid/flan-t5-base-samsum", 6144, 5),
+    #                        ("pegasus-xsum-4-24.0", "google/pegasus-xsum", 6144, 5),
+    #                        ("bart-xsum-4-24.0", "facebook/bart-large-xsum", 6144, 5),
+    #                        ("t5-small-wikihow-4-24.0", "deep-learning-analytics/wikihow-t5-small", 6144, 5),
+    #                        ("pegasus-wikihow-4-24.0", "google/pegasus-wikihow", 6144, 5),
+    #                        ("bart-base-booksum-4-24.0", "KamilAin/bart-base-booksum", 6144, 5),
+    #                        ("bigbird-pegasus-4-24.0", "pszemraj/bigbird-pegasus-large-K-booksum", 6144, 5)]
+    #
+    # for endpt, model, mem, max_concur in endpoints_to_create:
+    #     create_endpoint(endpt, model, mem, max_concur)
 
 

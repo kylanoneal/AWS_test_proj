@@ -74,7 +74,10 @@ class InputTextForm(FlaskForm):
 
     sentence_resolution = SelectField('Resolution:', validate_choice=False, choices=[(1, '1 Sentence'), (2, '2 Sentences'), (3, '3 Sentences')])
 
-    genre_choice = SelectField('Genre:', validate_choice=False, choices=[("news", 'News Article'), ("scientific", 'Scientific Paper'), ("fiction", 'Fiction')])
+    genre_choice = SelectField('Genre:', validate_choice=False,
+                               choices=[("news", "News Article"), ("scientific", "Scientific"),
+                                        ("blog", "Blog Post"), ("dialogue", "Dialogue"), ("tutorial", "Tutorial"),
+                                        ("fiction", "Fiction"), ("xsum", "One Sentence Summary")])
 
     model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[("bart", 'Bart'), ("pegasus", 'Pegasus'), ("t5", 'T5')])
 
