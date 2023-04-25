@@ -4,7 +4,8 @@ from sagemaker.huggingface.model import HuggingFacePredictor
 
 endpoint_dict = {'news': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"},
             'scientific': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"},
-            'fiction': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"}}
+            'fiction': {'t5': "flan-t5-base-4-24", 'bart': "bart-large-cnn-more-mem", 'pegasus': "pegasus-cnn-4-24"},
+            'xsum': {'t5': "flan-t5-base-4-24", 'bart': "bart-xsum-4-24", 'pegasus': "pegasus-xsum-4-24"}}
 
 def invoke_endpoint(input_text, genre_choice, model_choice):
     predictor = HuggingFacePredictor(endpoint_name=endpoint_dict[genre_choice][model_choice])
