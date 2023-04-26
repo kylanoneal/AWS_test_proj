@@ -18,8 +18,8 @@ endpoint_dict = {'news': {'Bart-Large-CNN': "bart-large-cnn-25-6-5", 'Pegasus-La
             'dialogue': {'Bart-Large-Samsum': "bart-samsum-25-6-5", 'Flan-T5-Base-Samsum': "flan-t5-samsum-25-6-5"},
             'blog': {'Pegasus-Large-TIFU': "pegasus-tifu-25-6-5"}}
 
-def invoke_endpoint(input_text, genre_choice, model_choice):
-    predictor = HuggingFacePredictor(endpoint_name=endpoint_dict[genre_choice][model_choice])
+def invoke_endpoint(input_text, model_choice):
+    predictor = HuggingFacePredictor(endpoint_name=model_choice)
     prediction = predictor.predict({'inputs': input_text})
     return prediction[0]['summary_text']
 
