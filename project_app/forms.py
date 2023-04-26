@@ -79,8 +79,8 @@ class InputTextForm(FlaskForm):
                                         ("blog", "Blog Post"), ("dialogue", "Dialogue"), ("tutorial", "Tutorial"),
                                         ("fiction", "Fiction"), ("xsum", "One Sentence Summary")])
 
-    model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[('bart-large-cnn-25-6-5', "Bart-Large-CNN"), ('pegasus-cnn-25-6-5',
-                                                                                    "Pegasus-Large-CNN"), ('flan-t5-base-25-6-5', "Flan-T5-Base")])
+    model_choice = SelectField('Suggested Model:', validate_choice=False, choices=[('bart-cnn-25-6-5', "Bart-Large-CNN"), ('pegasus-cnn-25-6-5',
+                                                                                    "Pegasus-Large-CNN"), ('flan-t5-25-6-5', "Flan-T5-Base")])
 
     sentence_extraction_button = SubmitField('Sentence Extraction')
 
