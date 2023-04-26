@@ -2,13 +2,21 @@ from sagemaker.huggingface.model import HuggingFaceModel
 from sagemaker.serverless import ServerlessInferenceConfig
 from sagemaker.huggingface.model import HuggingFacePredictor
 
-endpoint_dict = {'news': {'bart-large-cnn-25-6-5': "Bart-Large-CNN", 'pegasus-cnn-25-6-5': "Pegasus-Large-CNN", 'flan-t5-base-25-6-5': "Flan-T5-Base"},
-            'scientific': {'bigbird-pegasus-arxiv-25-6-5': "Bigbird-Pegasus-Large-arXiv", 'bart-arxiv-25-6-5': "LSG-Bart-Base-arXiv"},
-            'fiction': {'bart-base-booksum-25-5-6': "Bart-Base-Booksum", 'bigbird-pegasus-booksum-25-6-5': "Bigbird-Pegasus-Large-Booksum",},
-            'xsum': {'bart-xsum-25-6-5': "Bart-Large-XSUM", 'pegasus-xsum-25-6-5': "Pegasus-Large-XSUM"},
-            'tutorial': {'t5-small-wikihow-25-6-5': "T5-Small-Wikihow", 'pegasus-wikihow-25-6-5': "Pegasus-Large-Wikihow"},
-            'dialogue': {'bart-samsum-25-6-5': "Bart-Large-Samsum", 'flan-t5-samsum-25-6-5': 'Flan-T5-Base-Samsum'},
-            'blog': {'pegasus-tifu-25-6-5': "Pegasus-Large-TIFU"}}
+# endpoint_dict = {'news': {'bart-large-cnn-25-6-5': "Bart-Large-CNN", 'pegasus-cnn-25-6-5': "Pegasus-Large-CNN", 'flan-t5-base-25-6-5': "Flan-T5-Base"},
+#             'scientific': {'bigbird-pegasus-arxiv-25-6-5': "Bigbird-Pegasus-Large-arXiv", 'bart-arxiv-25-6-5': "LSG-Bart-Base-arXiv"},
+#             'fiction': {'bart-base-booksum-25-5-6': "Bart-Base-Booksum", 'bigbird-pegasus-booksum-25-6-5': "Bigbird-Pegasus-Large-Booksum",},
+#             'xsum': {'bart-xsum-25-6-5': "Bart-Large-XSUM", 'pegasus-xsum-25-6-5': "Pegasus-Large-XSUM"},
+#             'tutorial': {'t5-small-wikihow-25-6-5': "T5-Small-Wikihow", 'pegasus-wikihow-25-6-5': "Pegasus-Large-Wikihow"},
+#             'dialogue': {'bart-samsum-25-6-5': "Bart-Large-Samsum", 'flan-t5-samsum-25-6-5': 'Flan-T5-Base-Samsum'},
+#             'blog': {'pegasus-tifu-25-6-5': "Pegasus-Large-TIFU"}}
+
+endpoint_dict = {'news': {'Bart-Large-CNN': "bart-large-cnn-25-6-5", 'Pegasus-Large-CNN': "pegasus-cnn-25-6-5", 'Flan-T5-Base': "flan-t5-base-25-6-5"},
+            'scientific': {'Bigbird-Pegasus-Large-arXiv': "bigbird-pegasus-arxiv-25-6-5", 'LSG-Bart-Base-arXiv': "bart-arxiv-25-6-5"},
+            'fiction': {'Bart-Base-Booksum': "bart-base-booksum-25-5-6", 'Bigbird-Pegasus-Large-Booksum': "bigbird-pegasus-booksum-25-6-5"},
+            'xsum': {'Bart-Large-XSUM': "bart-xsum-25-6-5", 'Pegasus-Large-XSUM': "pegasus-xsum-25-6-5"},
+            'tutorial': {'T5-Small-Wikihow': "t5-small-wikihow-25-6-5", 'Pegasus-Large-Wikihow': "pegasus-wikihow-25-6-5"},
+            'dialogue': {'Bart-Large-Samsum': "bart-samsum-25-6-5", 'Flan-T5-Base-Samsum': "flan-t5-samsum-25-6-5"},
+            'blog': {'Pegasus-Large-TIFU': "pegasus-tifu-25-6-5"}}
 
 def invoke_endpoint(input_text, genre_choice, model_choice):
     predictor = HuggingFacePredictor(endpoint_name=endpoint_dict[genre_choice][model_choice])

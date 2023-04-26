@@ -108,7 +108,7 @@ def get_models(genre):
     model_options = []
 
     for key in models:
-        m_dict = {'id': key, 'name': models[key]}
+        m_dict = {'id': models[key], 'name': key}
         model_options.append(m_dict)
 
     return jsonify({'model_options': model_options})
