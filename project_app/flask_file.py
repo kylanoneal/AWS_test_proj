@@ -52,7 +52,6 @@ def summarize():
     # check that the submit button has been clicked and the text entry is valid
     if request.method == 'POST' and input_text_form.validate_on_submit():
         # retrieve the input text
-
         # storing uploaded files in /instance directory
         if input_text_form.attach_text_file.data:
             file = input_text_form.attach_text_file.data

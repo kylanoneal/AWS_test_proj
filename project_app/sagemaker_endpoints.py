@@ -10,11 +10,11 @@ from sagemaker.huggingface.model import HuggingFacePredictor
 #             'dialogue': {'bart-samsum-25-6-5': "Bart-Large-Samsum", 'flan-t5-samsum-25-6-5': 'Flan-T5-Base-Samsum'},
 #             'blog': {'pegasus-tifu-25-6-5': "Pegasus-Large-TIFU"}}
 
-endpoint_dict = {'news': {'Bart-Large-CNN': "bart-large-cnn-25-6-5", 'Pegasus-Large-CNN': "pegasus-cnn-25-6-5", 'Flan-T5-Base': "flan-t5-base-25-6-5"},
+endpoint_dict = {'news': {'Bart-Large-CNN': "bart-cnn-25-6-5", 'Pegasus-Large-CNN': "pegasus-cnn-25-6-5", 'Flan-T5-Base': "flan-t5-25-6-5"},
             'scientific': {'Bigbird-Pegasus-Large-arXiv': "bigbird-pegasus-arxiv-25-6-5", 'LSG-Bart-Base-arXiv': "bart-arxiv-25-6-5"},
-            'fiction': {'Bart-Base-Booksum': "bart-base-booksum-25-5-6", 'Bigbird-Pegasus-Large-Booksum': "bigbird-pegasus-booksum-25-6-5"},
+            'fiction': {'Bart-Base-Booksum': "bart-booksum-25-5-6", 'Bigbird-Pegasus-Large-Booksum': "bigbird-pegasus-booksum-25-6-5"},
             'xsum': {'Bart-Large-XSUM': "bart-xsum-25-6-5", 'Pegasus-Large-XSUM': "pegasus-xsum-25-6-5"},
-            'tutorial': {'T5-Small-Wikihow': "t5-small-wikihow-25-6-5", 'Pegasus-Large-Wikihow': "pegasus-wikihow-25-6-5"},
+            'tutorial': {'T5-Small-Wikihow': "t5-wikihow-25-6-5", 'Pegasus-Large-Wikihow': "pegasus-wikihow-25-6-5"},
             'dialogue': {'Bart-Large-Samsum': "bart-samsum-25-6-5", 'Flan-T5-Base-Samsum': "flan-t5-samsum-25-6-5"},
             'blog': {'Pegasus-Large-TIFU': "pegasus-tifu-25-6-5"}}
 
@@ -71,9 +71,9 @@ if __name__ == "__main__":
                            ("flan-t5-samsum-25-6-5", "philschmid/flan-t5-base-samsum", 6144, 5),
                            ("pegasus-xsum-25-6-5", "google/pegasus-xsum", 6144, 5),
                            ("bart-xsum-25-6-5", "facebook/bart-large-xsum", 6144, 5),
-                           ("t5-small-wikihow-25-6-5", "deep-learning-analytics/wikihow-t5-small", 6144, 5),
+                           ("t5-wikihow-25-6-5", "deep-learning-analytics/wikihow-t5-small", 6144, 5),
                            ("pegasus-wikihow-25-6-5", "google/pegasus-wikihow", 6144, 5),
-                           ("bart-base-booksum-25-6-5", "KamilAin/bart-base-booksum", 6144, 5),
+                           ("bart-booksum-25-6-5", "KamilAin/bart-base-booksum", 6144, 5),
                            ("bigbird-pegasus-25-6-5", "pszemraj/bigbird-pegasus-large-K-booksum", 6144, 5)]
 
     for endpt, model, mem, max_concur in endpoints_to_create:
