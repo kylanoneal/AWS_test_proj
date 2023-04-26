@@ -134,12 +134,12 @@ def generate_sent_extraction(input_text, algorithm_choice, sentence_resolution):
         return title, best_summary
 
 
-def generate_trans_inference(input_text, genre_choice, model_choice):
+def generate_trans_inference(input_text, model_choice):
 
     # get first sentence
     title = sent_tokenize(input_text[:200])[0]
     # invoke transformer endpoint
-    best_summary = invoke_endpoint(input_text, genre_choice, model_choice)
+    best_summary = invoke_endpoint(input_text, model_choice)
     best_summary = convert_summary(sent_tokenize(best_summary))
     return title, best_summary
 
