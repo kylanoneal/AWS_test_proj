@@ -74,7 +74,7 @@ if __name__ == "__main__":
                            ("t5-wikihow-25-6-5", "deep-learning-analytics/wikihow-t5-small", 6144, 5),
                            ("pegasus-wikihow-25-6-5", "google/pegasus-wikihow", 6144, 5),
                            ("bart-booksum-25-6-5", "KamilAin/bart-base-booksum", 6144, 5),
-                           ("bigbird-pegasus-25-6-5", "pszemraj/bigbird-pegasus-large-K-booksum", 6144, 5)]
+                           ("bigbird-pegasus-booksum-25-6-5", "pszemraj/bigbird-pegasus-large-K-booksum", 6144, 5)]
 
     for endpt, model, mem, max_concur in endpoints_to_create:
         create_endpoint(endpt, model, mem, max_concur)
