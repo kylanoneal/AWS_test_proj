@@ -90,14 +90,10 @@ def summarize():
         return show_summary(new_summary)
 
     # reload the summarize page if method is not POST
-    return render_summarize(input_text_form)
-
-
-def render_summarize(form):
     if session.get('user'):
-        return render_template('summarize.html', form=form, user=session['user'])
+        return render_template('summarize.html', form=input_text_form, user=session['user'])
     else:
-        return render_template('summarize.html', form=form)
+        return render_template('summarize.html', form=input_text_form)
 
 
 @app.route('/get_models/<genre>')
