@@ -263,3 +263,7 @@ span{
 .pad-bottom{
     padding-bottom: 2rem;
 }
+.footer-text{
+    display: inline-block;
+    padding: 10px;
+}

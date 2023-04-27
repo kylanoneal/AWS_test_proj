@@ -50,20 +50,9 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-txt">
+
                     <h2 class="heading-secondary hero-second">Register</h2>
-                    <h3 class="login-screen-info">Enter your information below to create an account.</h3>
-                    <div class="password-info">
-                        <h3 class="hero-third">Passwords must include a capital letter,</h3>
-                        <h3 class="hero-third"> number, and special character.</h3>
-                        <p></p>
-                        <p></p>
-                        <h3 class="hero-third">Already have account?</h3>
-                        <form action="/login">
-                            <button class="login-button" type="submit">Login</button>
-                        </form>
-                        <p></p>
-                        <p></p>
-                    </div>
+                     <h3 class="login-screen-info">Enter your information below to create an account.</h3>
                     <div class="new-summary-container">
                         <form action="{{ url_for('register') }}" method="POST">
                             <div class="form-container">
@@ -117,11 +106,22 @@
                                     </ul>
                                     {% endif %}
                                 </div>
-                                <div style="padding-top:20%">
+                                <div style="padding-top:5%; width:180px">
+                                    <h3 style="padding-bottom:5%" class="hero-third">*Passwords must include a capital letter, number, and special character.</h3>
                                     {{form.submit(class="login-button")}}
                                 </div>
                             </div>
                         </form>
+                        <div>
+                    <div class="password-info" style="padding-top:10%; width:325px; padding-bottom:10%">
+                        <h3 class="hero-third">Already have an account?</h3>
+                        <form action="/login">
+                            <button class="login-button" type="submit">Log in</button>
+                        </form>
+                        <p></p>
+                        <p></p>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -130,8 +130,8 @@
     </body>
     <div style="padding:20px"></div>
     <footer>
-        <div class = "footer">
-            <h3>UNCC 4155</h3><br>
+        <div class = "footer-text">
+            <h3>UNCC 4155</h3>
             {% if user %}
                 {{user}}
             {% endif %}
