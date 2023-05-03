@@ -1,5 +1,5 @@
 # 4155 Project Group 3
-Concisely - Summarizing text with sentence extraction and transformer models
+Concisely - Text Summarization by Sentence Extraction or Transformer Models
 
 By Alexander Steward, John Caraway, Kylan O'Neal, Nisha George, Sean Board
 
