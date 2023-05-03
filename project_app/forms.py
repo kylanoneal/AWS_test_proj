@@ -70,7 +70,7 @@ class InputTextForm(FlaskForm):
 
     attach_image_file = FileField('Upload image file')
 
-    algorithm_choice = SelectField('Algorithm:', validate_choice=False, choices=[(0, 'Distance'), (1, 'Bag of Words'), (2, 'Pre-trained Transformer')])
+    algorithm_choice = SelectField('Algorithm:', validate_choice=False, choices=[(0, 'Distance'), (1, 'Bag of Words')])
 
     sentence_resolution = SelectField('Resolution:', validate_choice=False, choices=[(1, '1 Sentence'), (2, '2 Sentences'), (3, '3 Sentences')])
 
