@@ -84,7 +84,7 @@ SQLAlchemy==1.4.42
 stack-data==0.5.0
 terminado==0.15.0
 tinycss2==1.1.1
-torch==1.13.1
+#torch==1.13.1
 tornado==6.2
 traitlets==5.4.0
 transformers==4.26.1
